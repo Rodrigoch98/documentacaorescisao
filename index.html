@@ -320,8 +320,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <tr data-status="ok"><td class="code">RH1004</td><td>Consulta do espelho de ponto</td><td>Apresenta o espelho de ponto e o banco de horas do colaborador para a conferência anterior ao cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
 <tr data-status="ok"><td class="code">RH1028</td><td>Ocorrência de registro de ponto</td><td>Utilizada na conferência das marcações de ponto antes da liberação do processo para cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
 <tr data-status="val"><td class="code">RH760</td><td>Remessa de pagamento ao banco</td><td>Participa do processamento do pagamento da rescisão e possui a opção de geração da AP. A relação exata com a RHR803 ainda precisa ser confirmada.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-<tr data-status="val"><td class="code">RH803</td><td>Retorno bancário</td><td>Foi indicada como rotina de retorno. É necessário confirmar a nomenclatura, a função e se o arquivo utiliza o padrão CNAB 400.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-<tr data-status="ok"><td class="code">RHR803</td><td>Arquivo de crédito em conta</td><td>Gera o arquivo de crédito em conta corrente utilizado no fluxo bancário da rescisão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">RHR803</td><td>Arquivo de crédito em conta e retorno bancário</td><td>É utilizada no fluxo bancário da rescisão para a geração do arquivo de crédito em conta e para o tratamento do retorno bancário. Ainda deve ser confirmado se o retorno utiliza o padrão CNAB 400.</td><td class="st"><span class="pill val">A validar</span></td></tr>
 <tr data-status="ok"><td class="code">FNR060</td><td>Autorização de Pagamento</td><td>Gera a Autorização de Pagamento e o título do fornecedor no contas a pagar, utilizando o código 991376.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
 <tr data-status="ok"><td class="code">GS526</td><td>Obtenção do arquivo bancário</td><td>É o local utilizado para localizar e obter o arquivo bancário gerado para o processamento do pagamento.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
 </tbody>
@@ -485,7 +484,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <li><span>2</span><div><strong>Gerar o arquivo bancário.</strong><p>A RHR803 gera o arquivo de crédito em conta.</p></div></li>
 <li><span>3</span><div><strong>Obter o arquivo na GS526.</strong><p>A GS526 é utilizada especificamente para localizar e baixar o arquivo bancário.</p></div></li>
 <li><span>4</span><div><strong>Processar a remessa.</strong><p>A RH760 participa do pagamento da rescisão. A relação exata entre RH760 e RHR803 ainda precisa ser confirmada.</p></div></li>
-<li><span>5</span><div><strong>Tratar o retorno bancário.</strong><p>A RH803 foi indicada como rotina de retorno. É necessário confirmar se o arquivo segue o padrão CNAB 400.</p></div></li>
+<li><span>5</span><div><strong>Tratar o retorno bancário.</strong><p>A RHR803 também é utilizada no tratamento do retorno bancário. Ainda deve ser confirmado se o arquivo segue o padrão CNAB 400.</p></div></li>
 <li><span>6</span><div><strong>Gerar a Autorização de Pagamento.</strong><p>A FNR060 gera a AP e o título do fornecedor, utilizando o código 991376.</p></div></li>
 <li><span>7</span><div><strong>Gerar o FGTS Digital.</strong><p>O procedimento detalhado ainda precisa ser documentado.</p></div></li>
 <li><span>8</span><div><strong>Enviar ao Bradesco e ao Financeiro.</strong><p>O material segue para processamento bancário e aprovação do Financeiro.</p></div></li>
@@ -522,7 +521,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <div class="chk-group">
 <label class="chk"><input type="checkbox"/><span>Validar com o responsável funcional o preenchimento e a operação da RH632.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar a relação operacional entre RH760 e RHR803 no processamento do pagamento.</span></label>
-<label class="chk"><input type="checkbox"/><span>Confirmar se a RH803 corresponde ao retorno bancário e se utiliza o padrão CNAB 400.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar se o retorno bancário tratado na RHR803 utiliza o padrão CNAB 400.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar o nome oficial da RH621 e onde ficam gravadas a norma de medidas disciplinares e a política interna.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar se a referência à RH922 corresponde a uma tela válida ou a outra nomenclatura.</span></label>
 </div>
