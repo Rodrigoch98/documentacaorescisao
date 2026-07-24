@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rotina de Rescisão · Levantamento do processo | RH/DP Círculo</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;450;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
   --bg:#F6F7F9; --surface:#FFFFFF; --ink:#1B1F24; --body:#3B4046; --mute:#767C83; --faint:#A6ABB1;
@@ -182,426 +183,387 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 .foot-brand{display:flex;align-items:center;justify-content:flex-start;gap:15px;flex-wrap:wrap;margin-bottom:14px}
 .foot-brand .sep{width:1px;height:26px;background:var(--hair)}
 .foot-stmt{font-style:normal;color:var(--body)}
+
+
+/* fluxos em caixas */
+.flow-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:22px 0 30px}
+.flow-box{background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px 18px;min-width:0}
+.flow-box h3{margin:4px 0 18px;font-family:var(--serif);font-size:1.32rem}
+.flow-kicker{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--crim)}
+.flow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.flow-list li{display:grid;grid-template-columns:32px 1fr;gap:11px;padding:12px 0;border-bottom:1px solid var(--line)}
+.flow-list li:last-child{border-bottom:none;padding-bottom:2px}
+.flow-list li>span{width:28px;height:28px;border-radius:99px;background:var(--crim-tint);color:var(--crim-d);font-weight:700;font-size:.76rem;display:flex;align-items:center;justify-content:center}
+.flow-list strong{display:block;margin-bottom:2px}
+.flow-list p{margin:0;color:var(--mute);font-size:.88rem;line-height:1.5}
+@media (max-width:760px){.flow-grid{grid-template-columns:1fr}.flow-box{padding:19px 17px}}
+@media print{.flow-grid{grid-template-columns:1fr 1fr;gap:10px}.flow-box{box-shadow:none;page-break-inside:avoid}}
 </style>
 </head>
 <body>
 <div id="progress"></div>
-
 <div class="wrap">
-  <!-- ============ SIDEBAR ============ -->
-  <aside class="sidebar">
-    <div class="brand"><span class="logo-singe" style="width:96px;height:104px" role="img" aria-label="Help SINGE"></span></div>
-    <div class="brand-cap">RH / DP · Círculo</div>
-    <div class="side-h">Rescisão de contrato</div>
-    <nav id="nav">
-      <a href="#s1"><span class="n">01</span> Visão geral</a>
-      <a href="#s2"><span class="n">02</span> Tipos e origem</a>
-      <a href="#s3"><span class="n">03</span> Etapas do processo</a>
-      <a href="#s4"><span class="n">04</span> Telas envolvidas</a>
-      <a href="#s5"><span class="n">05</span> RH632: cálculo</a>
-      <a href="#s6"><span class="n">06</span> RH1006: cartas</a>
-      <a href="#s7"><span class="n">07</span> Verbas e direitos</a>
-      <a href="#s8"><span class="n">08</span> Impressão e vias</a>
-      <a href="#s9"><span class="n">09</span> Prazos e cronograma</a>
-      <a href="#s10"><span class="n">10</span> Fluxo financeiro</a>
-      <a href="#s11"><span class="n">11</span> Checklist</a>
-    </nav>
-    <div class="side-h">Legenda</div>
-    <div class="legend">
-      <div class="row"><span class="dot ok"></span><span><b style="color:var(--ok)">Confirmado.</b> Validado pela documentação ou pela tela.</span></div>
-      <div class="row"><span class="dot val"></span><span><b style="color:var(--val)">A validar.</b> Requer confirmação durante a reunião.</span></div>
-      <div class="row"><span class="dot open"></span><span><b style="color:var(--open)">Em aberto.</b> Ainda não há definição ou existe divergência.</span></div>
-    </div>
-    <div class="progress-card">
-      <div class="t"><span>Checklist</span><b><span id="chkDone">0</span> / <span id="chkTotal">0</span></b></div>
-      <div class="bar"><i id="chkBar"></i></div>
-      <button id="chkClear" class="clearbtn" type="button">Limpar marcações</button>
-      <div class="saved-note" id="savedNote">Salvo neste navegador</div>
-    </div>
-    <div class="side-foot">
-      <div class="by">Desenvolvido por</div>
-      <span class="logo-lince" style="width:48px;height:26px" role="img" aria-label="Lince Tech"></span>
-    </div>
-  </aside>
-
-  <div class="main">
-    <!-- mobile nav -->
-    <details class="mobilenav">
-      <summary><span class="mm"></span> Índice do documento</summary>
-      <nav>
-        <a href="#s1"><span class="n">01</span> Visão geral</a>
-        <a href="#s2"><span class="n">02</span> Tipos e origem</a>
-        <a href="#s3"><span class="n">03</span> Etapas do processo</a>
-        <a href="#s4"><span class="n">04</span> Telas envolvidas</a>
-        <a href="#s5"><span class="n">05</span> RH632: cálculo</a>
-        <a href="#s6"><span class="n">06</span> RH1006: cartas</a>
-        <a href="#s7"><span class="n">07</span> Verbas e direitos</a>
-        <a href="#s8"><span class="n">08</span> Impressão e vias</a>
-        <a href="#s9"><span class="n">09</span> Prazos e cronograma</a>
-        <a href="#s10"><span class="n">10</span> Fluxo financeiro</a>
-        <a href="#s11"><span class="n">11</span> Checklist</a>
-      </nav>
-    </details>
-
-    <!-- filter bar -->
-    <div class="filterbar">
-      <span class="lbl">Filtrar por situação:</span>
-      <button class="fbtn active" data-filter="all">Tudo</button>
-      <button class="fbtn" data-filter="ok">Confirmado <span class="c" id="cOk"></span></button>
-      <button class="fbtn" data-filter="val">A validar <span class="c" id="cVal"></span></button>
-      <button class="fbtn" data-filter="open">Em aberto <span class="c" id="cOpen"></span></button>
-      <button class="fbtn print" onclick="window.print()">Imprimir / PDF</button>
-    </div>
-
-    <div class="container">
-      <!-- HERO -->
-      <header class="hero">
-        <div class="brand-bar">
-          <span class="made">Um produto <span class="logo-lince" style="width:55px;height:30px" role="img" aria-label="Lince Tech"></span></span>
-        </div>
-        <div class="eyebrow">Levantamento do processo</div>
-        <h1>Rotina de Rescisão de Contrato</h1>
-        <p class="sub">Conteúdo consolidado com base no levantamento realizado com o RH e o Departamento Pessoal da Círculo, preparado para revisão antes da elaboração da documentação final.</p>
-        <div class="meta">
-          <span>Reunião realizada em <b>21/07/2026</b></span>
-          <span>Participantes: <b>Antônio</b> e <b>Janete</b></span>
-          <span>Próximo encontro: <b>24/07/2026</b></span>
-          <span><b>Documento de trabalho.</b> Conteúdo sujeito a validação.</span>
-        </div>
-        <p class="intro">Este material reúne as anotações da reunião, as informações dos manuais do RH e a análise das telas do sistema. As cores identificam o nível de validação de cada item, enquanto os filtros facilitam a consulta dos pontos confirmados, pendentes ou ainda sem definição. Ao final, há uma <strong>lista de verificação</strong> para apoiar a próxima reunião.</p>
-      </header>
-
-      <!-- 1 -->
-      <section class="section" id="s1">
-        <div class="s-head"><span class="num">01</span><h2>Visão geral e áreas envolvidas</h2></div>
-        <p class="lead">A rotina de rescisão depende da atuação coordenada entre diferentes áreas, responsáveis e sistemas.</p>
-        <ul class="clean">
-          <li>A <strong>gestora do Departamento Trabalhista</strong> acompanha o processo, enquanto o analista do Departamento Pessoal executa as atividades operacionais.</li>
-          <li>A área de <strong>Benefícios</strong> participa das conferências necessárias. A relação direta com o controle de ponto ainda precisa ser confirmada.</li>
-          <li>Também participam o <strong>eSocial, o Financeiro, o Ambulatório</strong> e o <strong>Sindicato</strong>.</li>
-          <li>O processo inclui procedimentos relacionados ao <strong>FGTS Digital, ao eConsignado</strong> e ao <strong>seguro desemprego</strong>.</li>
-          <li>O <strong>líder da área</strong> e o <strong>colaborador</strong> também participam conforme a origem e o tipo de desligamento.</li>
-        </ul>
-        <p>Atualmente, parte das comunicações depende de listas com nomes e endereços individuais. Para facilitar a manutenção, a recomendação é organizar os destinatários por setor e função. A relação existente no manual do RH, apresentada na seção 9, pode ser utilizada como referência inicial.</p>
-      </section>
-
-      <!-- 2 -->
-      <section class="section" id="s2">
-        <div class="s-head"><span class="num">02</span><h2>Tipos e origem da rescisão</h2></div>
-        <p class="lead">Embora o desligamento possa ter diferentes origens, as etapas passam a seguir um fluxo comum após as análises iniciais.</p>
-        <ul class="clean">
-          <li><strong>Iniciativa da empresa:</strong> o processo começa com uma análise anterior à rescisão, normalmente conduzida a partir da solicitação da liderança.</li>
-          <li><strong>Solicitação do colaborador:</strong> ocorre quando o próprio colaborador formaliza o pedido de demissão.</li>
-          <li>A iniciativa também pode surgir quando o <strong>colaborador procura a liderança</strong> para comunicar sua intenção de sair.</li>
-          <li><strong>Término do contrato de experiência:</strong> tem origem na avaliação registrada na RH977. Quando a avaliação resulta no encerramento do contrato, o registro é arquivado e utilizado como base para o cálculo da rescisão.</li>
-        </ul>
-        <p>Nos desligamentos <strong>sem justa causa</strong>, é realizada uma análise trabalhista prévia que considera estabilidade, afastamentos pelo INSS e eventuais condições médicas. O resultado é encaminhado à Diretoria e, após a aprovação, o processo de rescisão é iniciado. Quando a liberação do aviso prévio depende da coordenação ou supervisão, a autorização é solicitada por mensagem eletrônica, conforme detalhado na seção 6.</p>
-        <div class="note rule"><span class="lbl">A confirmar</span> <strong>MP, Movimentação de Pessoal:</strong> há indicação de que o término antecipado e a demissão por justa causa exigem o envio desse documento ao RH pela área responsável. É necessário confirmar a sigla, a origem da solicitação e o local de registro.</div>
-      </section>
-
-      <!-- 3 -->
-      <section class="section" id="s3">
-        <div class="s-head"><span class="num">03</span><h2>Etapas do processo</h2></div>
-        <p class="lead">Sequência consolidada das principais atividades, desde a solicitação do desligamento até a homologação.</p>
-        <ol class="timeline">
-          <li><span class="n">1</span><b>Origem e solicitação.</b> O processo pode começar por iniciativa da empresa, por pedido do colaborador ou pelo término do contrato de experiência registrado na RH977. A justa causa e o término antecipado exigem MP.</li>
-          <li><span class="n">2</span><b>Análises prévias.</b> São verificadas as estabilidades na RH568, os registros disciplinares na RH621 nos casos de justa causa e a necessidade de aprovação da Diretoria.</li>
-          <li><span class="n">3</span><b>Carta e agendamentos.</b> A carta é emitida na RH1006. Quando necessário, são agendados o exame demissional no Ambulatório e a homologação na empresa ou no Sindicato.</li>
-          <li><span class="n">4</span><b>Comunicação de pendências.</b> As áreas recebem a relação semanal das informações que precisam ser conferidas ou devolvidas, conforme os prazos da seção 9.</li>
-          <li><span class="n">5</span><b>Conferência antes do cálculo.</b> São verificados os dados de ponto, benefícios e o retorno do Ambulatório, incluindo o ASO. A etapa deve passar por dupla conferência.</li>
-          <li><span class="n">6</span><b>Cálculo.</b> A rescisão é calculada na RH632.</li>
-          <li><span class="n">7</span><b>Impressão dos termos.</b> Os documentos são emitidos na quantidade de vias definida para cada cenário, conforme a seção 8.</li>
-          <li><span class="n">8</span><b>Fluxo financeiro.</b> São gerados a remessa bancária, a Autorização de Pagamento e o FGTS Digital. Em seguida, o arquivo é encaminhado ao Bradesco e submetido à aprovação do Financeiro, conforme a seção 10.</li>
-          <li><span class="n">9</span><b>Homologação.</b> A conclusão ocorre na empresa para contratos de até três meses ou no Sindicato para períodos superiores, sempre com o ASO demissional apto quando exigido.</li>
-        </ol>
-      </section>
-
-      <!-- 4 -->
-      <section class="section" id="s4">
-        <div class="s-head"><span class="num">04</span><h2>Telas envolvidas</h2></div>
-        <p class="lead">Relação das telas identificadas no processo e do nível de validação de cada uma.</p>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Tela</th><th>Nome</th><th>Papel no processo</th><th style="text-align:center">Situação</th></tr></thead>
-          <tbody>
-            <tr data-status="ok"><td class="code">RH632</td><td>Rescisão Contrato de Trabalho</td><td>Tela central do cálculo: datas, eventos, FGTS, consignado e geração dos termos.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH1006</td><td>Emissão de Cartas p/ Rescisão</td><td>Cartas de desligamento. Motivo e Causa ligados a ela; alimenta a RH636.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH977</td><td>Avaliação / término de experiência</td><td>Avaliações de experiência; a avaliação negativa gera a rescisão e a carta na RH1006.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">RH577</td><td>Acompanhamento de contrato de experiência</td><td>Acompanhamento do vencimento (motivo, parecer, enquadramento). Papel em relação à RH977 a confirmar.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">RH522</td><td>Término de contrato de experiência</td><td>Consulta da data de término da experiência (citada junto com a RH595).</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">RH568</td><td>Funcionários com Estabilidade</td><td>Estabilidades (CIPA/SIPAT, aposentadoria, auxílio doença, acidente, férias, gestante) antes de calcular.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">RH621</td><td>Registros disciplinares / anexos</td><td>Reúne a norma, os registros disciplinares e os anexos utilizados como base nos casos de justa causa.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">RH595</td><td>Cadastro de Funcionários</td><td>Dados do colaborador; verifica os primeiros 45 dias de experiência.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH636</td><td>Quadro / Postos de Trabalho e Vagas</td><td>Painel do quadro de pessoal que apresenta alocados, afastados, aumento de quadro, vagas pendentes do RH, postos disponíveis e colaboradores em demissão. Recebe informações da RH1006.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH1004</td><td>Consulta Espelho de Ponto</td><td>Espelho de ponto / banco de horas do colaborador.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH1028</td><td>Ocorrência de Registro de Ponto</td><td>Conferência das marcações de ponto antes do cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH760</td><td>Remessa Pagamento Banco</td><td>Pagamentos no banco; tipo “Rescisão” e opção “Gerar AP”. O 13º sai em remessa separada.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH760 / RH803</td><td>Remessa ao banco × Consulta de Folha</td><td>A análise do código indica que a <strong>RH760</strong> gera a remessa bancária no padrão CNAB 400 do Bradesco. A RH803 é utilizada apenas para consulta da folha e do demonstrativo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RHR803</td><td>Arquivo de crédito em conta</td><td>Rotina em lote que gera o arquivo de crédito em conta corrente por banco e agência. O RH utiliza a RHR803 ou a RH760 conforme o cenário, mas o critério de escolha ainda precisa ser confirmado.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">FNR060</td><td>Autorização de Pagamento (AP)</td><td>Gera a Autorização de Pagamento e o título do fornecedor no contas a pagar. Corresponde à AP citada no fluxo e utiliza o código de fornecedor 991376.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">GS526</td><td>Impressão de relatórios</td><td>Central de relatórios utilizada para consultar, imprimir e baixar as saídas geradas pelo sistema, incluindo os arquivos da RHR803 e da FNR060.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RH924</td><td>Alteração de Salários</td><td>A análise do código confirma que essa tela é destinada à alteração de salários. Ela <strong>não</strong> integra o fluxo de rescisão e <strong>não</strong> corresponde à consulta de eventos.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">RHR017</td><td>Tabela / Consulta de Eventos</td><td>Consulta a tabela de eventos por empresa, código e nome, utilizando os campos CDEVENTO e NMEVENTO. É a rotina utilizada no campo Evento e Valor da RH632.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">RHR020</td><td>Rotina em lote (rescisão)</td><td>Cálculo em lote; calcula a pensão alimentícia que vai ao eSocial.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-          </tbody>
-        </table></div></div>
-        <p class="cap">As telas RH557, referente aos acúmulos da folha, e RH1001, destinada à consulta de funcionários, foram citadas na documentação existente, mas ainda não possuem anexo neste levantamento.</p>
-        <div class="note alert"><span class="lbl">A definir</span> O item <strong>“Comunicado, levantamento de refeitório e assuntos relacionados”</strong> foi mencionado em conjunto com as telas RH632, RH1028, RH1004, RH568, RH577, RH595 e RH1006. É necessário esclarecer o conteúdo desse levantamento e em qual etapa do processo ele deve ser realizado.</div>
-      </section>
-
-      <!-- 5 -->
-      <section class="section" id="s5">
-        <div class="s-head"><span class="num">05</span><h2>RH632: cálculo e preenchimento dos campos</h2></div>
-        <p class="lead">A RH632 concentra o cálculo da rescisão. Os itens destacados em vermelho ainda precisam de definição.</p>
-        <p>Antes de iniciar o cálculo, devem ser consultadas as estabilidades na <strong>RH568</strong>, os dados do colaborador na <strong>RH595</strong> e na <strong>RH1001</strong>, além dos acúmulos da folha na <strong>RH557</strong>.</p>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Campo</th><th>O que informar</th><th style="text-align:center">Situação</th></tr></thead>
-          <tbody>
-            <tr data-status="val"><td class="code">Cabeçalho</td><td>Muda conforme o tipo de rescisão.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">Data de Pagamento</td><td>Data em que o pagamento fica disponível na conta do colaborador.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">Data de Demissão</td><td>Data em que ocorreu a demissão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">Data do Aviso</td><td>Igual à data da rescisão ou até 30 dias antes (quando há aviso prévio). Mecânica detalhada na seção 6.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">Aviso Prévio (dias)</td><td>O sistema informa a quantidade de dias de aviso.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">Motivo</td><td>Lista que identifica o motivo da demissão e mantém relação com a carta emitida na RH1006.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Causa</td><td>Lista que identifica a causa da demissão e mantém relação com a carta emitida na RH1006.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Três Últimos Salários</td><td>Campo numérico. Confirmar se há situação específica de preenchimento.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Qtde de Meses com Vínculo</td><td>Campo numérico; normalmente fica em branco.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">Simulação</td><td>Marcar para apenas simular a rescisão (destacar no manual).</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">Reposição de vaga</td><td>Indica se a vaga será reposta; reflete no seguro desemprego e no quadro de lotação.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">Recebeu Salário (6 meses)</td><td>Usado para o seguro desemprego; preenchido automaticamente.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">Bloquear Usuário na Catraca</td><td>Controle de acesso após a demissão. <strong>Regra: sempre “sim”</strong>; se “não”, registrar observação (PJ, fechamento ou não autorizado pela coordenação).</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="ok"><td class="code">Ignorar Lançamentos Futuros</td><td>Apenas em simulação; na rescisão normal, não é usado.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">Desviar fluxo de e-mail</td><td>O código demonstra que o campo registra um indicador S ou N, identificado como <code>indesflu</code>, para alterar o fluxo das mensagens. A forma de funcionamento está confirmada, mas ainda é necessário definir em quais situações deve ser utilizada, como no desligamento de lideranças.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="open"><td class="code">Dias a mais 13º / Férias</td><td>Dias adicionais quando o funcionário paga o aviso. Confirmar a finalidade e quando se aplica.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
-            <tr data-status="open"><td class="code">Aviso Prévio (pago/indenizado)</td><td>Indica aviso prévio pago; vai ao eSocial quando indenizado. Como o sistema não traz o dado, marcar “sim” para indenizado pela empresa.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
-            <tr data-status="open"><td class="code">Último Dia</td><td>Último dia trabalhado (aviso projetado). Confirmar se o sistema preenche ou se é manual.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
-            <tr data-status="val"><td class="code">Pensão Alimentícia / % / Valor</td><td>Preencher somente quando houver pensão alimentícia. O cálculo é realizado pela RHR020 e enviado ao eSocial. Os demais campos permanecem em branco.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="ok"><td class="code">Certidão de Óbito</td><td>Nos casos de óbito, informar o número da certidão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
-            <tr data-status="val"><td class="code">Cumprimento de Aviso</td><td>Lista que identifica o tipo de cumprimento, o motivo e a existência de aviso prévio.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Consignado / Instituição / Contrato</td><td>Pelo código, o sistema detecta empréstimo consignado ativo e traz o valor pago (tabela <code>RH278</code>), exibindo um aviso; instituição e contrato costumam ficar em branco.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Descontado / Reavido</td><td>Confirmado pelo código: indicador de desconto/recuperação do empréstimo <strong>eConsignado</strong> na rescisão. Alimenta a “Declaração de Desconto Crédito eConsignado” (Portarias MTE 1.115/2026 e 451/2025) e só aparece quando há consignado ativo. Confirmar como o RH decide entre descontado e reavido.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-            <tr data-status="val"><td class="code">Evento / Valor</td><td>A RH632 apresenta eventos internos, como o código <code>70</code> para décimo terceiro indenizado e o código <code>71</code> para férias indenizadas. A tabela de eventos utilizada é a <strong>RHR017</strong>. Resta confirmar se a referência à “RH922” corresponde a outro nome ou a uma rotina diferente.</td><td class="st"><span class="pill val">A validar</span></td></tr>
-          </tbody>
-        </table></div></div>
-        <p class="cap"><strong>Funções disponíveis na tela:</strong> Consultar, Detalhar, Cancelar, Bloquear Catraca, Movimento Futuro e Consultar Eventos. A opção Detalhar gera os termos, enquanto o cancelamento deve ocorrer antes dos depósitos. A impressão fica disponível no canto direito. Os dados de FGTS e empréstimo são informados na própria RH632.</p>
-      </section>
-
-      <!-- 6 -->
-      <section class="section" id="s6">
-        <div class="s-head"><span class="num">06</span><h2>RH1006: cartas, campos e aviso prévio</h2></div>
-        <p class="lead">A RH1006 é utilizada para emitir as cartas de desligamento e registrar as informações relacionadas ao aviso prévio.</p>
-        <p>Em todos os desligamentos, o colaborador deve estar acompanhado por um responsável do setor. A devolução dos documentos e benefícios é registrada como “OK”, quando o item foi devolvido, “Não”, quando não era utilizado, ou “Irá trazer”, quando a entrega ficará pendente.</p>
-
-        <h3>6.1 · Tipos de carta (operação)</h3>
-        <p>A análise do campo <code>inopcsel</code> demonstra que a tela possui <strong>cinco tipos principais</strong>: Aviso Prévio Indenizado, Pedido de Demissão, Rescisão com Justa Causa, Aviso Prévio Trabalhado e Término de Contrato. As <strong>dez formas</strong> descritas no manual representam variações desses tipos, considerando o cumprimento ou a liberação do aviso e o período anterior ou posterior ao contrato de experiência.</p>
-        <ul class="clean">
-          <li>Pedido de demissão após o período de experiência, com aviso liberado ou descontado.</li>
-          <li>Pedido de demissão após o período de experiência, com aviso cumprido.</li>
-          <li>Pedido de demissão antes do término do contrato de experiência, com aviso liberado ou descontado.</li>
-          <li>Pedido de demissão antes do término do contrato de experiência, com aviso cumprido.</li>
-          <li>Término de contrato antes de vencer a experiência (por parte do empregador).</li>
-          <li>Demissão sem justa causa (operação “Aviso Prévio Dispensado”).</li>
-          <li>Demissão com justa causa (operação “Rescisão Com Justa Causa”).</li>
-          <li>Término de contrato (no fim do prazo, a partir da avaliação da RH977).</li>
-        </ul>
-
-        <h3>6.2 · Campos da RH1006</h3>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Campo</th><th>O que informar</th></tr></thead>
-          <tbody>
-            <tr><td class="code">Tipo de operação</td><td>Define o cenário (ver 6.1).</td></tr>
-            <tr><td class="code">Data da rescisão</td><td>Conforme o cenário: data do pedido (ou dia 1º em fechamento), data da MP (justa causa) ou “não preencher” (sem justa causa). No aviso cumprido, o sistema calcula pelo cartão ponto.</td></tr>
-            <tr><td class="code">Data do aviso</td><td>Data do pedido ou da dispensa; “não preencher” na justa causa.</td></tr>
-            <tr><td class="code">Exame médico (data/hora)</td><td>Preencher só quando há exame demissional (agendar com o ambulatório).</td></tr>
-            <tr><td class="code">Local do exame</td><td>Ambulatório Círculo.</td></tr>
-            <tr><td class="code">Homologação (data/hora/local)</td><td>Sindicato (9h) ou Círculo (10h/10:30h), conforme o cenário; local Sind. Têxtil Gaspar ou Círculo.</td></tr>
-            <tr><td class="code">Número do cartão ponto</td><td>Cartão ponto do colaborador.</td></tr>
-            <tr><td class="code">Letra do artigo 482</td><td>Preencher somente nos casos de justa causa, conforme a tabela do artigo 482 da CLT disponível no manual.</td></tr>
-            <tr><td class="code">Justificativa</td><td>Preencher somente nos casos de justa causa, informando o motivo da dispensa.</td></tr>
-          </tbody>
-        </table></div></div>
-
-        <h3>6.3 · Aviso prévio</h3>
-        <ul class="clean">
-          <li><strong>Liberado.</strong> A liderança autoriza a liberação por mensagem eletrônica. Nesse caso, o aviso não é pago nem descontado.</li>
-          <li><strong>Cumprido.</strong> O período corresponde a 30 dias corridos após o pedido. No último dia, o colaborador entrega os benefícios, a CTPS e os itens de controle. O exame demissional é realizado somente após o encerramento do aviso.</li>
-          <li><strong>Descontado.</strong> Quando o colaborador não cumpre o aviso e a liderança não autoriza a liberação, são descontados 30 dias, equivalentes a um salário.</li>
-        </ul>
-        <div class="note info"><span class="lbl">Desconto antes do término da experiência</span> Para contratos com menos de três meses, não há exame demissional. O valor do aviso descontado é calculado pela metade dos dias restantes do contrato, multiplicada por 7,33 e pelo valor da hora. Os contratos podem ter 45 ou 90 dias, e a data de término pode ser consultada na RH522 ou na RH595. <em>A regra foi identificada no código da RH1006 e está relacionada ao artigo 480 da CLT.</em></div>
-
-        <h3>6.4 · Por cenário</h3>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Cenário</th><th>Exame</th><th>Homologação</th><th>Vias e sindicato</th></tr></thead>
-          <tbody>
-            <tr><td class="code">Pedido de demissão (após experiência)</td><td>Sim, após o aviso</td><td>Terça feira, às 9h no Sindicato ou entre 10h e 10h30 na Círculo</td><td>Acima de 3 meses: 4 vias (1 assinada na hora; três carimbadas pelo Sindicato, destinadas ao colaborador, ao Sindicato e à empresa).</td></tr>
-            <tr><td class="code">Pedido antes do término da experiência (descontado)</td><td>Não (&lt; 3 meses)</td><td>Terça, 10:30h na Círculo</td><td>4 vias (1 assinada, 1 da empresa). Carimbo e informativo do valor descontado. Sem sindicato.</td></tr>
-            <tr><td class="code">Término antecipado (empregador)</td><td>Não</td><td>Terças, 10h na empresa</td><td>2 vias (empresa e colaborador). Sem sindicato. Exige MP.</td></tr>
-            <tr><td class="code">Demissão sem justa causa</td><td>Sim (agendar)</td><td>Terça, 9h no sindicato</td><td>2 vias com duas assinaturas de preposto. Verificar estabilidade; PPP via Segurança.</td></tr>
-            <tr><td class="code">Demissão com justa causa</td><td>Sim (agendar)</td><td>9h no sindicato</td><td>2 vias com duas assinaturas de preposto. Exige MP e letra do Art. 482; PPP via Segurança.</td></tr>
-            <tr><td class="code">Término de contrato (RH977)</td><td>Conforme avaliação</td><td>Conforme cenário</td><td>A avaliação negativa é arquivada; a rescisão é calculada a partir dela.</td></tr>
-          </tbody>
-        </table></div></div>
-        <div class="note alert"><span class="lbl">Atenção</span> A homologação não ocorre sem o ASO demissional apto. Na justa e na sem justa causa, informar o cartão ponto à Segurança para providenciar o PPP.</div>
-
-        <h3>6.5 · Entrega e casos especiais</h3>
-        <ul class="clean">
-          <li>O <strong>WhatsApp</strong> é utilizado nos casos de término de contrato e justa causa.</li>
-          <li>O envio pelo <strong>Correio</strong> ocorre quando o colaborador não comparece.</li>
-          <li>A comunicação pode ser realizada <strong>verbalmente</strong> quando o colaborador comparece à empresa.</li>
-          <li>O documento <strong>impresso</strong> também pode ser utilizado, conforme o cenário.</li>
-        </ul>
-        <p>Os casos envolvendo colaboradores com <strong>40 anos ou mais</strong> e situações de <strong>“PJotização”</strong> seguem política interna específica. A integração entre a RH1006 e a RH636 também deve ser contemplada na documentação final.</p>
-      </section>
-
-      <!-- 7 -->
-      <section class="section" id="s7">
-        <div class="s-head"><span class="num">07</span><h2>Verbas e direitos</h2></div>
-        <p class="lead">Referência das principais verbas e orientações mencionadas durante o levantamento.</p>
-        <div class="note rule"><span class="lbl">Regra</span> O colaborador pode ser informado sobre as verbas que compõem a rescisão, mas os valores não devem ser antecipados antes da conclusão do cálculo.</div>
-        <p>Além das indenizações do pedido de demissão e do aviso prévio, foram citados 40% do FGTS, 1/12 avos de férias, 1/12 avos de 13º, eventuais estabilidades e o aviso prévio indenizado.</p>
-        <h3>Direitos por tipo de rescisão</h3>
-        <ul class="clean">
-          <li>Férias proporcionais devidas (Enunciados TST 171 e 261; OIT nº 132).</li>
-          <li>Indenização adicional de um salário quando o término ocorre nos 30 dias que antecedem a data base.</li>
-          <li>Depósito do FGTS e multa de 40%, quando devida, na conta da Caixa Econômica Federal, além de 10% de contribuição social, totalizando 50%.</li>
-          <li>Culpa recíproca: multa do FGTS de 20% e direito a 50% do aviso, do 13º e das férias proporcionais (Enunciado TST 14).</li>
-          <li>Aviso prévio é devido pelo empregado (sob pena de desconto), salvo dispensa pelo empregador.</li>
-        </ul>
-        <p>Nos casos de justa causa, devem ser observados a norma interna, os registros disciplinares da RH621 e a tabela do artigo 482 disponível no manual. O RH também utiliza uma referência externa de verbas. É necessário confirmar se essa fonte será mencionada na documentação.</p>
-      </section>
-
-      <!-- 8 -->
-      <section class="section" id="s8">
-        <div class="s-head"><span class="num">08</span><h2>Impressão e vias</h2></div>
-        <p class="lead">Quantidade de vias, local de homologação e procedimento aplicável a cada cenário.</p>
-        <p>Após concluir o cálculo, utilizar a opção <strong>Detalhar Rescisão</strong> para revisar as informações e emitir os documentos.</p>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Cenário</th><th>Vias e procedimento</th></tr></thead>
-          <tbody>
-            <tr><td class="code">Acima de 3 meses (sindicato)</td><td>Quatro vias sem timbre. Uma é assinada no momento da homologação e três são carimbadas pelo Sindicato, com destinação ao colaborador, ao Sindicato e à empresa. Esse cenário corresponde ao código “S” na mensagem encaminhada às áreas.</td></tr>
-            <tr><td class="code">Abaixo de 3 meses (empresa)</td><td>Homologação na Círculo (código “C”). No aviso descontado antes da experiência: 4 vias (1 assinada, 1 da empresa), com carimbo e informativo do valor descontado.</td></tr>
-            <tr><td class="code">Demissão com ou sem justa causa</td><td>2 vias (empresa e colaborador), com duas assinaturas de preposto.</td></tr>
-            <tr><td class="code">Término de contrato (experiência)</td><td>2 vias (empresa e colaborador); sem sindicato e sem exame demissional.</td></tr>
-          </tbody>
-        </table></div></div>
-        <p>A opção <strong>Detalhar Rescisão</strong> apresenta as abas Termo de Rescisão, Termo de Quitação para contratos de até três meses, Termo de Homologação para contratos superiores a três meses, Resumo e Atualização da CTPS. A organização está alinhada aos códigos “C”, utilizado para homologação na empresa, e “S”, utilizado para homologação no Sindicato.</p>
-        <p>Atualmente, o <strong>eConsignado</strong> gera um formulário impresso em duas vias. Há indicação de que esse procedimento será revisado.</p>
-      </section>
-
-      <!-- 9 -->
-      <section class="section" id="s9">
-        <div class="s-head"><span class="num">09</span><h2>Prazos e cronograma</h2></div>
-        <p class="lead">Cronograma semanal das comunicações, cálculos, pagamentos e homologações.</p>
-        <p>O cronograma do RH está dividido em dois fluxos, definidos pelo dia em que o pedido ou o aviso é registrado.</p>
-        <div class="table-wrap"><div class="scroll"><table>
-          <thead><tr><th>Etapa</th><th>Pedido ou aviso: segunda e terça</th><th>Pedido ou aviso: quarta, quinta e sexta</th></tr></thead>
-          <tbody>
-            <tr><td class="code">Mensagem informativa</td><td>Terça, até 16:45</td><td>Sexta, até 16:45</td></tr>
-            <tr><td class="code">Cálculo</td><td>Quinta e sexta</td><td>Segunda e terça</td></tr>
-            <tr><td class="code">eSocial</td><td>Sexta</td><td>Terça</td></tr>
-            <tr><td class="code">Financeiro</td><td>Sexta</td><td>Terça</td></tr>
-            <tr><td class="code">Débito em conta</td><td>Terça</td><td>Quinta</td></tr>
-            <tr><td class="code">Pagamento</td><td>Quarta</td><td>Sexta</td></tr>
-            <tr><td class="code">Homologação</td><td>Quarta da 1ª semana seguinte</td><td>Quarta da 2ª semana seguinte</td></tr>
-          </tbody>
-        </table></div></div>
-        <div class="note alert"><span class="lbl">Divergência</span> O manual de 2022 informa que a homologação ocorre na <em>terça feira</em>, enquanto o cronograma atual indica a <em>quarta feira</em>. A prática vigente precisa ser confirmada.</div>
-        <h3>Comunicação de pendências</h3>
-        <ul class="clean">
-          <li><strong>Cadência:</strong> as rescisões registradas entre domingo e quarta feira são comunicadas na quarta feira à tarde. As registradas entre quinta feira e sábado são comunicadas na segunda feira pela manhã.</li>
-          <li><strong>Códigos:</strong> “**” antes do cartão ponto marca os pedidos de demissão; ao lado da data, “C” = empresa (até 3 meses) e “S” = sindicato (acima de 3 meses).</li>
-          <li><strong>Resposta das áreas:</strong> o retorno deve ocorrer até aproximadamente 17h do dia informado.</li>
-          <li><strong>Provisões com o financeiro:</strong> segundas e quintas (rescisão e FGTS).</li>
-        </ul>
-        <p><strong>Prazos legais mencionados:</strong> o envio ao eSocial e o crédito em conta devem ocorrer em até dez dias. O Financeiro deve receber as informações com dois dias de antecedência em relação ao pagamento. Esses prazos ainda precisam ser comparados com o cronograma operacional.</p>
-      </section>
-
-      <!-- 10 -->
-      <section class="section" id="s10">
-        <div class="s-head"><span class="num">10</span><h2>Fluxo financeiro e áreas de apoio</h2></div>
-        <p class="lead">Atividades realizadas após o cálculo e participação das áreas de apoio.</p>
-        <h3>Fluxo financeiro após o cálculo</h3>
-        <p>Após o detalhamento, a conferência e a impressão dos documentos, são realizadas as seguintes atividades. Os nomes das rotinas ainda precisam ser confirmados em alguns pontos.</p>
-        <ul class="clean">
-          <li><strong>Gerar o arquivo bancário.</strong> A rotina pode ser a RHR803, para crédito em conta corrente, ou a RH760, para remessa CNAB 400. É necessário confirmar qual delas é utilizada em cada cenário.</li>
-          <li><strong>Executar a FNR060.</strong> A rotina gera a Autorização de Pagamento e o título do fornecedor, utilizando o código 991376.</li>
-          <li><strong>Gerar FGTS Digital.</strong></li>
-          <li><strong>Enviar no Bradesco.</strong></li>
-          <li><strong>Encaminhar ao Financeiro.</strong> O material é enviado por mensagem eletrônica ou pelo Teams para aprovação.</li>
-          <li><strong>Imprimir uma via, carimbar e assinar</strong>, entregando com a AP para a Coordenadora assinar.</li>
-        </ul>
-        <p>Os relatórios e arquivos gerados pela RHR803 e pela FNR060 ficam disponíveis na <strong>GS526</strong> para consulta, impressão e download. O material do RH também contém <strong>oito capturas de tela</strong> do fluxo financeiro, que poderão ser utilizadas na documentação final.</p>
-        <h3>Ambulatório e Segurança</h3>
-        <ul class="clean">
-          <li><strong>Ambulatório:</strong> realiza o agendamento do exame demissional. A homologação somente pode ocorrer quando o ASO estiver apto.</li>
-          <li><strong>Segurança e PPP:</strong> nos desligamentos com ou sem justa causa, o número do cartão ponto deve ser encaminhado à Segurança para emissão do PPP.</li>
-        </ul>
-        <h3>Outras integrações</h3>
-        <ul class="clean">
-          <li><strong>Remessa bancária (RH760):</strong> pagamentos com tipo “Rescisão”; o 13º sai em remessa separada.</li>
-          <li><strong>FGTS Digital:</strong> o procedimento ainda precisa ser documentado.</li>
-          <li><strong>eConsignado:</strong> o processo ainda precisa ser estruturado. Atualmente, é gerado um formulário impresso em duas vias.</li>
-          <li><strong>Sindicato:</strong> as homologações de contratos superiores a três meses são realizadas no Sindicato Têxtil de Gaspar.</li>
-        </ul>
-        <h3>Benefícios e planos de saúde</h3>
-        <div class="note alert"><span class="lbl">Reconciliar</span> <strong>Keren, Unimed e Uniodonto</strong> foram mencionados como itens externos a este fluxo. Entretanto, a Uniodonto aparece na lista de destinatários das comunicações de rescisão. É necessário confirmar essa participação e mapear como ocorre a exclusão da Unimed.</div>
-        <p><strong>PagFor:</strong> foi mencionado como um procedimento exclusivo da Plasvale ou de empresas relacionadas. Essa informação ainda precisa ser validada.</p>
-      </section>
-
-      <!-- 11 -->
-      <section class="section" id="s11">
-        <div class="s-head"><span class="num">11</span><h2>Checklist para a próxima reunião</h2></div>
-        <p class="lead">Pontos que precisam ser confirmados ou definidos na reunião de 24/07/2026.</p>
-        <div class="note ok"><span class="lbl">Informações disponíveis nos materiais do RH</span> Os tipos de carta, a regra do aviso prévio, a quantidade de vias por cenário, o papel da RH977 e o cronograma já possuem conteúdo de referência. Esses pontos precisam apenas de conferência durante a reunião.</div>
-        <div class="note ok"><span class="lbl">Informações confirmadas pela análise do código</span> A RH924 corresponde à Alteração de Salários. A RH636 apresenta o quadro, os postos e as vagas. A RHR017 consulta a tabela de eventos. A FNR060 gera a Autorização de Pagamento e o título do fornecedor. A RHR803 gera o arquivo de crédito em conta, enquanto a RH760 gera a remessa CNAB 400. Os campos “Descontado/Reavido” e “Desviar fluxo de e-mail” registram, respectivamente, o indicador do eConsignado e a opção S ou N. A RH1006 possui cinco tipos principais de carta.</div>
-
-        <h3>Telas e nomenclatura</h3>
-        <div class="chk-group">
-          <label class="chk"><input type="checkbox"><span>Confirmar qual rotina é utilizada para o envio ao Bradesco: RHR803, para crédito em conta, ou RH760, para remessa CNAB 400.</span></label>
-          <label class="chk"><input type="checkbox"><span>A RHR017 foi confirmada como a tela de eventos. Verificar se a “RH922” mencionada corresponde a outro nome ou a uma rotina diferente.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar o nome oficial da RH621, utilizada para os registros disciplinares.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar o papel da RH577 e da RH977 nas avaliações do contrato de experiência.</span></label>
-        </div>
-
-        <h3>Campos da RH632 a definir</h3>
-        <div class="chk-group">
-          <label class="chk"><input type="checkbox"><span>Definir em quais situações deve ser utilizado o campo “Desviar fluxo de e-mail”. O funcionamento do indicador S ou N já está confirmado.</span></label>
-          <label class="chk"><input type="checkbox"><span>Definir a finalidade do campo “Dias a mais 13º / Férias” e as situações em que deve ser preenchido.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar quais informações são apresentadas pelo sistema no campo “Aviso Prévio, pago ou indenizado”.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar se o campo “Último Dia” é preenchido automaticamente pelo sistema ou manualmente.</span></label>
-          <label class="chk"><input type="checkbox"><span>Definir a regra de negócio do consignado para as opções “Descontado” e “Reavido”. O sistema já identifica o contrato ativo por meio da RH278.</span></label>
-          <label class="chk"><input type="checkbox"><span>Definir em quais situações devem ser preenchidos os campos “Três últimos salários” e “Recebeu salário nos últimos seis meses”.</span></label>
-        </div>
-
-        <h3>Processo, prazos e vigência</h3>
-        <div class="chk-group">
-          <label class="chk"><input type="checkbox"><span>Confirmar se a homologação ocorre na terça feira, conforme o manual de 2022, ou na quarta feira, conforme o cronograma atual.</span></label>
-          <label class="chk"><input type="checkbox"><span>Comparar os prazos legais de dez dias e o envio ao Financeiro com dois dias de antecedência com o cronograma operacional.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar o significado da sigla MP, Movimentação de Pessoal, e onde o documento é solicitado.</span></label>
-          <label class="chk"><input type="checkbox"><span>Validar a vigência das informações do manual entre 2017 e 2022, incluindo locais e horários de homologação, contratos de 45 ou 90 dias e destinatários das comunicações.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar a participação da Uniodonto, pois foi citada como externa ao fluxo, mas consta na lista de comunicações.</span></label>
-          <label class="chk"><input type="checkbox"><span>Definir a reorganização dos destinatários por setor e função, evitando a manutenção por nomes individuais.</span></label>
-          <label class="chk"><input type="checkbox"><span>Esclarecer o conteúdo do “Comunicado, levantamento de refeitório e assuntos relacionados” e a etapa em que deve ser realizado.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar se os tipos de carta correspondem às “10 formas” da tela.</span></label>
-        </div>
-
-        <h3>Ainda falta levantar</h3>
-        <div class="chk-group">
-          <label class="chk"><input type="checkbox"><span>Detalhar a etapa anterior à rescisão, incluindo as informações preenchidas e os responsáveis por cada atividade.</span></label>
-          <label class="chk"><input type="checkbox"><span>Mapear as telas que ainda não possuem anexo neste levantamento: RH557, RH1001, RHR017 e RH522.</span></label>
-          <label class="chk"><input type="checkbox"><span>Confirmar a ordem definitiva das etapas para permitir a elaboração do fluxograma.</span></label>
-          <label class="chk"><input type="checkbox"><span>Definir em quais pontos da documentação serão inseridas as oito capturas de tela do fluxo financeiro.</span></label>
-        </div>
-      </section>
-
-      <footer>
-        <div class="foot-brand"><span class="logo-singe" style="width:31px;height:34px" role="img" aria-label="Help SINGE"></span><span class="sep"></span><span class="logo-lince" style="width:48px;height:26px" role="img" aria-label="Lince Tech"></span></div>
-        <span class="foot-stmt">Um produto <strong>Lince Tech</strong>, desenvolvido para o <strong>Help SINGE</strong>.</span><br>
-        Conteúdo organizado a partir das anotações de 21/07/2026, das telas analisadas e dos manuais do RH sobre cartas, cronograma e fluxo financeiro. Este é um material de trabalho e não substitui a documentação final.
-      </footer>
-    </div>
-  </div>
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar">
+<div class="brand"><span aria-label="Help SINGE" class="logo-singe" role="img" style="width:96px;height:104px"></span></div>
+<div class="brand-cap">RH / DP · Círculo</div>
+<div class="side-h">Rescisão de contrato</div>
+<nav id="nav"><a href="#s1"><span class="n">01</span> Visão geral</a><a href="#s2"><span class="n">02</span> Tipos e origem</a><a href="#s3"><span class="n">03</span> Etapas do processo</a><a href="#s4"><span class="n">04</span> Telas envolvidas</a><a href="#s5"><span class="n">05</span> RH1006: cartas</a><a href="#s6"><span class="n">06</span> RH632: cálculo</a><a href="#s7"><span class="n">07</span> Impressão e vias</a><a href="#s8"><span class="n">08</span> Prazos e cronograma</a><a href="#s9"><span class="n">09</span> Fluxos do processo</a><a href="#s10"><span class="n">10</span> Pendências</a></nav>
+<div class="side-h">Legenda</div>
+<div class="legend">
+<div class="row"><span class="dot ok"></span><span><b style="color:var(--ok)">Confirmado.</b> Validado pela documentação ou pela tela.</span></div>
+<div class="row"><span class="dot val"></span><span><b style="color:var(--val)">A validar.</b> Requer confirmação complementar.</span></div>
+<div class="row"><span class="dot open"></span><span><b style="color:var(--open)">Em aberto.</b> Ainda não há definição ou existe divergência.</span></div>
 </div>
+<div class="progress-card">
+<div class="t"><span>Pendências</span><b><span id="chkDone">0</span> / <span id="chkTotal">0</span></b></div>
+<div class="bar"><i id="chkBar"></i></div>
+<button class="clearbtn" id="chkClear" type="button">Limpar marcações</button>
+<div class="saved-note" id="savedNote">Salvo neste navegador</div>
+</div>
+<div class="side-foot">
+<div class="by">Desenvolvido por</div>
+<span aria-label="Lince Tech" class="logo-lince" role="img" style="width:48px;height:26px"></span>
+</div>
+</aside>
+<div class="main">
+<!-- mobile nav -->
+<details class="mobilenav">
+<summary><span class="mm"></span> Índice do documento</summary>
+<nav><a href="#s1"><span class="n">01</span> Visão geral</a><a href="#s2"><span class="n">02</span> Tipos e origem</a><a href="#s3"><span class="n">03</span> Etapas do processo</a><a href="#s4"><span class="n">04</span> Telas envolvidas</a><a href="#s5"><span class="n">05</span> RH1006: cartas</a><a href="#s6"><span class="n">06</span> RH632: cálculo</a><a href="#s7"><span class="n">07</span> Impressão e vias</a><a href="#s8"><span class="n">08</span> Prazos e cronograma</a><a href="#s9"><span class="n">09</span> Fluxos do processo</a><a href="#s10"><span class="n">10</span> Pendências</a></nav>
+</details>
+<!-- filter bar -->
+<div class="filterbar">
+<span class="lbl">Filtrar por situação:</span>
+<button class="fbtn active" data-filter="all">Tudo</button>
+<button class="fbtn" data-filter="ok">Confirmado <span class="c" id="cOk"></span></button>
+<button class="fbtn" data-filter="val">A validar <span class="c" id="cVal"></span></button>
+<button class="fbtn" data-filter="open">Em aberto <span class="c" id="cOpen"></span></button>
+<button class="fbtn print" onclick="window.print()">Imprimir / PDF</button>
+</div>
+<div class="container">
+<!-- HERO -->
+<header class="hero">
+<div class="brand-bar">
+<span class="made">Um produto <span aria-label="Lince Tech" class="logo-lince" role="img" style="width:55px;height:30px"></span></span>
+</div>
+<div class="eyebrow">Levantamento do processo</div>
+<h1>Rotina de Rescisão de Contrato</h1>
+<p class="sub">Conteúdo consolidado com base nas reuniões realizadas com o RH e o Departamento Pessoal da Círculo, atualizado com as definições coletadas em 24/07/2026 e preparado para orientar a documentação final.</p>
+<div class="meta"><span>Primeira reunião: <b>21/07/2026</b></span><span>Atualização realizada em: <b>24/07/2026</b></span><span>Participantes: <b>Antônio</b> e <b>Janete</b></span><span><b>Documento de trabalho.</b> Conteúdo sujeito a validações complementares.</span></div>
+<p class="intro">Este material reúne as anotações das reuniões, as informações dos manuais do RH e a análise das telas do sistema. As cores identificam o nível de validação de cada item, enquanto os filtros facilitam a consulta dos pontos confirmados, pendentes ou ainda sem definição. Ao final, há uma <strong>relação de pendências</strong> para orientar a continuidade do levantamento.</p>
+</header>
+<!-- 1 -->
+<section class="section" id="s1">
+<div class="s-head"><span class="num">01</span><h2>Visão geral e áreas envolvidas</h2></div>
+<p class="lead">A rotina de rescisão depende da atuação coordenada entre diferentes áreas, responsáveis e sistemas.</p>
+<ul class="clean">
+<li>A <strong>gestora do Departamento Trabalhista</strong> acompanha o processo, enquanto o analista do Departamento Pessoal executa as atividades operacionais.</li>
+<li>A área de <strong>Benefícios</strong>, representada por Karen nas conferências citadas, precisa concluir suas verificações antes do cálculo.</li>
+<li>As informações de <strong>ponto</strong>, tratadas com Márcia, também devem estar concluídas antes do prosseguimento da rescisão.</li>
+<li>Também participam o <strong>eSocial, o Financeiro, o Ambulatório</strong>, quando necessário, e o <strong>Sindicato</strong>.</li>
+<li>O processo inclui procedimentos relacionados ao <strong>FGTS Digital, ao eConsignado</strong> e ao <strong>seguro desemprego</strong>.</li>
+<li>O <strong>líder da área</strong> e o <strong>colaborador</strong> participam conforme a origem e o tipo de desligamento.</li>
+</ul>
+<p>Atualmente, parte das comunicações depende de listas com nomes e endereços individuais. Para facilitar a manutenção, a recomendação é organizar os destinatários por setor e função. A relação existente no manual do RH, apresentada na seção 8, pode ser utilizada como referência inicial.</p>
+</section>
+<!-- 2 -->
+<section class="section" id="s2">
+<div class="s-head"><span class="num">02</span><h2>Tipos e origem da rescisão</h2></div>
+<p class="lead">A origem define as análises iniciais, mas todos os cenários passam pela liderança antes da formalização no RH.</p>
+<h3>Origem da solicitação</h3>
+<ul class="clean">
+<li><strong>Empregado:</strong> corresponde ao pedido de demissão. O colaborador procura a liderança, comunica sua decisão e a solicitação é formalizada para o RH.</li>
+<li><strong>Empresa:</strong> a necessidade pode ser identificada pela liderança ou pelo próprio RH, mas deve passar pela liderança antes do encaminhamento e da formalização.</li>
+<li><strong>Força maior ou falecimento:</strong> inclui a rescisão decorrente de óbito, formalizada a partir do documento de óbito apresentado. A RH632 possui campo específico para o número da certidão.</li>
+</ul>
+<h3>Tipos de desligamento</h3>
+<ul class="clean">
+<li><strong>Pedido de demissão:</strong> iniciado pelo colaborador e formalizado por intermédio da liderança.</li>
+<li><strong>Demissão sem justa causa:</strong> a MP, Movimentação de Pessoal, é encaminhada primeiro ao RH. Em seguida, é realizada a análise trabalhista, com verificação de estabilidade, afastamentos, condições médicas e aprovações aplicáveis.</li>
+<li><strong>Demissão com justa causa:</strong> não utiliza MP. O processo depende dos registros disciplinares, da justificativa e da política interna aplicável.</li>
+<li><strong>Término do contrato de experiência:</strong> pode ocorrer pelo encerramento normal do prazo ou pela reprovação registrada pela liderança na RH977.</li>
+<li><strong>Término antecipado do contrato:</strong> não exige MP e segue o tratamento definido para o cenário correspondente.</li>
+<li><strong>Rescisão por falecimento:</strong> é iniciada mediante a apresentação do documento de óbito.</li>
+</ul>
+<div class="note ok"><span class="lbl">Regra confirmada</span> A MP é utilizada no desligamento sem justa causa. Não há MP na demissão por justa causa nem no término antecipado do contrato.</div>
+</section>
+<!-- 3 -->
+<section class="section" id="s3">
+<div class="s-head"><span class="num">03</span><h2>Etapas do processo</h2></div>
+<p class="lead">Sequência consolidada das principais atividades, respeitando a origem do desligamento e a ordem operacional das telas.</p>
+<ol class="timeline">
+<li><span class="n">1</span><b>Origem e formalização.</b> Classificar a solicitação como empregado, empresa ou força maior. O fluxo contempla pedido de demissão, desligamento com ou sem justa causa, término normal ou antecipado do contrato e falecimento.</li>
+<li><span class="n">2</span><b>Análises prévias conforme a origem.</b> No desligamento sem justa causa, a MP é recebida pelo RH antes da análise trabalhista. Na justa causa, são verificados os registros disciplinares e a política interna, sem utilização de MP. No término de experiência, é considerada a avaliação da RH977.</li>
+<li><span class="n">3</span><b>Emissão da carta e agendamentos.</b> A RH1006 é utilizada antes da RH632 para efetivar a comunicação do desligamento. O Ambulatório participa somente quando houver necessidade de exame demissional. A homologação é agendada conforme o cenário.</li>
+<li><span class="n">4</span><b>Comunicação às áreas.</b> As áreas de apoio recebem a relação das informações que precisam ser conferidas ou devolvidas, de acordo com o cronograma da seção 8.</li>
+<li><span class="n">5</span><b>Conferência antes do cálculo.</b> Confirmar que os processos anteriores foram concluídos, que a MP está disponível quando aplicável, que Benefícios realizou a conferência com Karen, que o ponto foi tratado com Márcia e que o retorno do Ambulatório está disponível quando necessário.</li>
+<li><span class="n">6</span><b>Cálculo e emissão dos documentos.</b> A rescisão é calculada na RH632. Em seguida, o detalhamento é conferido e os termos são emitidos na quantidade de vias definida para cada cenário, conforme a seção 7.</li>
+<li><span class="n">7</span><b>Envio ao eSocial.</b> Após a conclusão e a conferência do cálculo, as informações da rescisão são encaminhadas ao eSocial dentro do prazo aplicável.</li>
+<li><span class="n">8</span><b>Fluxo financeiro.</b> O arquivo bancário, a Autorização de Pagamento e o FGTS Digital seguem para processamento e aprovação, conforme o fluxo específico da seção 9.</li>
+<li><span class="n">9</span><b>Homologação.</b> A conclusão ocorre na empresa para contratos de até três meses ou no Sindicato para períodos superiores, sempre com o ASO demissional apto quando o exame for exigido.</li>
+</ol>
+</section>
+<!-- 4 -->
+<section class="section" id="s4">
+<div class="s-head"><span class="num">04</span><h2>Telas envolvidas</h2></div>
+<p class="lead">Relação atualizada das telas que permanecem no levantamento, considerando as definições da reunião de 24/07/2026.</p>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Tela</th><th>Nome</th><th>Papel no processo</th><th style="text-align:center">Situação</th></tr></thead>
+<tbody>
+<tr data-status="ok"><td class="code">RH977</td><td>Avaliação e término de experiência</td><td>Registra a avaliação do contrato de experiência. O encerramento pode ocorrer pelo fim do prazo ou pela reprovação informada pela liderança.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">RH568</td><td>Funcionários com estabilidade</td><td>Apoia a análise trabalhista prévia, incluindo as verificações de estabilidade aplicáveis.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">RH621</td><td>Registros disciplinares e anexos</td><td>Reúne os registros utilizados nos casos de justa causa. Ainda é necessário confirmar onde a norma de medidas disciplinares e a política interna ficam gravadas para disponibilizar o link específico na documentação.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">RH1006</td><td>Emissão de cartas para rescisão</td><td>Efetiva a comunicação do desligamento, registra o aviso prévio e antecede o cálculo realizado na RH632. Também alimenta a RH636.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">RH632</td><td>Rescisão de contrato de trabalho</td><td>Tela central do cálculo, do detalhamento e da emissão dos termos. O preenchimento operacional ainda precisa ser validado com Vilmar.</td><td class="st"><span class="pill val">Validar com Vilmar</span></td></tr>
+<tr data-status="ok"><td class="code">RH636</td><td>Quadro, postos de trabalho e vagas</td><td>Apresenta alocados, afastados, aumento de quadro, vagas pendentes, postos disponíveis e colaboradores em demissão. Recebe informações da RH1006.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">RH1004</td><td>Consulta do espelho de ponto</td><td>Apresenta o espelho de ponto e o banco de horas do colaborador para a conferência anterior ao cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">RH1028</td><td>Ocorrência de registro de ponto</td><td>Utilizada na conferência das marcações de ponto antes da liberação do processo para cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">RH760</td><td>Remessa de pagamento ao banco</td><td>Participa do processamento do pagamento da rescisão e possui a opção de geração da AP. A relação exata com a RHR803 ainda precisa ser confirmada.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">RH803</td><td>Retorno bancário</td><td>Foi indicada como rotina de retorno. É necessário confirmar a nomenclatura, a função e se o arquivo utiliza o padrão CNAB 400.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">RHR803</td><td>Arquivo de crédito em conta</td><td>Gera o arquivo de crédito em conta corrente utilizado no fluxo bancário da rescisão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">FNR060</td><td>Autorização de Pagamento</td><td>Gera a Autorização de Pagamento e o título do fornecedor no contas a pagar, utilizando o código 991376.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">GS526</td><td>Obtenção do arquivo bancário</td><td>É o local utilizado para localizar e obter o arquivo bancário gerado para o processamento do pagamento.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+</tbody>
+</table></div></div>
+<p>As telas <strong>RH557</strong>, referente aos acúmulos da folha, e <strong>RH1001</strong>, destinada à consulta de funcionários, permanecem citadas na documentação existente, mas ainda não possuem anexo neste levantamento.</p>
 
+</section>
+<!-- 5 -->
+<section class="section" id="s5">
+<div class="s-head"><span class="num">05</span><h2>RH1006: cartas, campos e aviso prévio</h2></div>
+<p class="lead">A RH1006 efetiva a comunicação do desligamento e deve ser utilizada antes do cálculo na RH632.</p>
+<p>Em todos os desligamentos, o colaborador deve estar acompanhado por um responsável do setor. A devolução dos documentos e benefícios é registrada como “OK”, quando o item foi devolvido, “Não”, quando não era utilizado, ou “Irá trazer”, quando a entrega ficará pendente.</p>
+<h3>5.1 · Tipos de carta e operação</h3>
+<p>A análise do campo <code>inopcsel</code> demonstra que a tela possui cinco tipos principais: Aviso Prévio Indenizado, Pedido de Demissão, Rescisão com Justa Causa, Aviso Prévio Trabalhado e Término de Contrato. As formas descritas no manual representam variações desses tipos, considerando o cumprimento ou a liberação do aviso e o período anterior ou posterior ao contrato de experiência.</p>
+<ul class="clean">
+<li>Pedido de demissão após o período de experiência, com aviso liberado ou descontado.</li>
+<li>Pedido de demissão após o período de experiência, com aviso cumprido.</li>
+<li>Pedido de demissão antes do término do contrato de experiência, com aviso liberado ou descontado.</li>
+<li>Pedido de demissão antes do término do contrato de experiência, com aviso cumprido.</li>
+<li>Término antecipado do contrato por iniciativa da empresa.</li>
+<li>Demissão sem justa causa, utilizando a operação de aviso prévio dispensado.</li>
+<li>Demissão com justa causa.</li>
+<li>Término normal do contrato, a partir da avaliação da RH977.</li>
+</ul>
+<h3>5.2 · Campos da RH1006</h3>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Campo</th><th>O que informar</th></tr></thead>
+<tbody>
+<tr><td class="code">Tipo de operação</td><td>Define o cenário de desligamento conforme os tipos apresentados no item 5.1.</td></tr>
+<tr><td class="code">Data da rescisão</td><td>No pedido de demissão, utilizar a data do pedido ou o primeiro dia do período quando houver fechamento. No desligamento sem justa causa, considerar a data formalizada na MP. Na justa causa, não há MP e deve ser utilizada a data efetiva da demissão. No aviso cumprido, o sistema considera o período apurado pelo cartão ponto.</td></tr>
+<tr><td class="code">Data do aviso</td><td>Informar a data do pedido ou da dispensa. Na justa causa, o campo não é preenchido.</td></tr>
+<tr><td class="code">Exame médico</td><td>Preencher a data e o horário somente quando houver necessidade de exame demissional, com agendamento realizado pelo Ambulatório.</td></tr>
+<tr><td class="code">Local do exame</td><td>Ambulatório da Círculo, quando aplicável.</td></tr>
+<tr><td class="code">Homologação</td><td>Informar data, horário e local conforme o cenário, utilizando o Sindicato Têxtil de Gaspar ou a Círculo.</td></tr>
+<tr><td class="code">Número do cartão ponto</td><td>Informar o cartão ponto do colaborador.</td></tr>
+<tr><td class="code">Letra do artigo 482</td><td>Preencher somente nos casos de justa causa, conforme a tabela do artigo 482 da CLT utilizada pelo RH.</td></tr>
+<tr><td class="code">Justificativa</td><td>Preencher somente nos casos de justa causa, informando o motivo da dispensa e a fundamentação correspondente.</td></tr>
+</tbody>
+</table></div></div>
+<h3>5.3 · Aviso prévio</h3>
+<ul class="clean">
+<li><strong>Liberado:</strong> a liderança autoriza a liberação por mensagem eletrônica. Nesse caso, o aviso não é pago nem descontado.</li>
+<li><strong>Cumprido:</strong> o período corresponde a 30 dias corridos após o pedido. No último dia, o colaborador entrega os benefícios, a CTPS e os itens de controle. O exame demissional é realizado somente após o encerramento do aviso.</li>
+<li><strong>Descontado:</strong> quando o colaborador não cumpre o aviso e a liderança não autoriza a liberação, são descontados 30 dias, equivalentes a um salário.</li>
+</ul>
+<h3>5.4 · Tratamento por cenário</h3>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Cenário</th><th>Exame</th><th>Homologação</th><th>Procedimento</th></tr></thead>
+<tbody>
+<tr><td>Pedido de demissão após a experiência</td><td>Sim, após o aviso</td><td>Sindicato ou Círculo, conforme o tempo de contrato</td><td>Acima de três meses, são emitidas quatro vias, com assinatura e carimbos conforme o procedimento sindical.</td></tr>
+<tr><td>Pedido antes do término da experiência</td><td>Não, quando o contrato é inferior a três meses</td><td>Círculo</td><td>Quando houver aviso descontado, emitir as vias e o informativo do valor descontado conforme o manual.</td></tr>
+<tr><td>Término antecipado por iniciativa da empresa</td><td>Não</td><td>Círculo</td><td>Emitir duas vias, uma para a empresa e outra para o colaborador. Não exige MP.</td></tr>
+<tr><td>Demissão sem justa causa</td><td>Sim, quando necessário</td><td>Conforme o tempo de contrato</td><td>Exige MP antes da análise trabalhista, além da verificação de estabilidade e do encaminhamento do PPP à Segurança.</td></tr>
+<tr><td>Demissão com justa causa</td><td>Sim, quando necessário</td><td>Conforme o cenário</td><td>Não exige MP. Utilizar os registros disciplinares, a justificativa e a letra do artigo 482. Encaminhar o PPP à Segurança.</td></tr>
+<tr><td>Término normal do contrato</td><td>Conforme a avaliação</td><td>Conforme o cenário</td><td>O encerramento decorre do fim do prazo ou da reprovação registrada na RH977.</td></tr>
+<tr><td>Falecimento</td><td>Não se aplica</td><td>Não se aplica</td><td>O processo é iniciado a partir do documento de óbito. Confirmar se há carta específica na RH1006.</td></tr>
+</tbody>
+</table></div></div>
+<h3>5.5 · Entrega, mensagens e referências</h3>
+<ul class="clean">
+<li>O WhatsApp é utilizado nos casos de término de contrato e justa causa. Os modelos das mensagens de aviso serão encaminhados para inclusão na documentação.</li>
+<li>O envio pelo Correio ocorre quando o colaborador não comparece.</li>
+<li>A comunicação pode ser realizada verbalmente quando o colaborador comparece à empresa.</li>
+<li>O documento impresso também pode ser utilizado, conforme o cenário.</li>
+</ul>
+<div class="note rule"><span class="lbl">Referência interna</span> A norma de medidas disciplinares e a política interna aplicável aos casos de justa causa devem ser disponibilizadas por meio de páginas e links específicos. O local em que esses documentos ficam gravados ainda precisa ser confirmado.</div>
+<p>Os casos envolvendo colaboradores com 40 anos ou mais e situações de “PJotização” seguem política interna específica. A integração entre a RH1006 e a RH636 também deve ser contemplada na documentação final.</p>
+</section>
+<!-- 6 -->
+<section class="section" id="s6">
+<div class="s-head"><span class="num">06</span><h2>RH632: cálculo e preenchimento dos campos</h2></div>
+<p class="lead">A RH632 concentra o cálculo, o detalhamento e a emissão dos termos. O procedimento operacional ainda precisa ser validado com Vilmar.</p>
+<div class="note ok"><span class="lbl">Condição para prosseguir</span> Ao acessar a RH632, todas as análises anteriores já devem estar concluídas. Antes de iniciar, confirmar a MP em mãos quando aplicável, a conferência de Benefícios com Karen, o tratamento do ponto com Márcia e o retorno do Ambulatório somente nos casos em que houver exame demissional.</div>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Campo</th><th>O que informar</th><th style="text-align:center">Situação</th></tr></thead>
+<tbody>
+<tr data-status="ok"><td class="code">Cabeçalho e origem</td><td>Selecionar a origem como Empregado, Empresa ou Força maior. A opção Empregado corresponde ao pedido de demissão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">Data de Pagamento</td><td>Data em que o pagamento fica disponível na conta do colaborador.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">Data de Demissão</td><td>Data em que ocorreu a demissão.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">Data do Aviso</td><td>Igual à data da rescisão ou até 30 dias antes quando houver aviso prévio. A mecânica está detalhada na seção 5.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">Aviso Prévio em dias</td><td>O sistema informa a quantidade de dias de aviso.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">Motivo</td><td>Lista que identifica o motivo da demissão e mantém relação com a carta emitida na RH1006.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Causa</td><td>Lista que identifica a causa da demissão e mantém relação com a carta emitida na RH1006.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Três Últimos Salários</td><td>Campo numérico. Confirmar se há situação específica de preenchimento.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Quantidade de Meses com Vínculo</td><td>Campo numérico que normalmente permanece em branco.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">Simulação</td><td>Marcar quando a finalidade for apenas simular a rescisão. No processo efetivo, a RH1006 já deve ter sido concluída.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">Reposição de vaga</td><td>Indica se a vaga será reposta e reflete no seguro desemprego e no quadro de lotação.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">Recebeu Salário nos últimos seis meses</td><td>Utilizado no seguro desemprego e preenchido automaticamente. Confirmar as exceções.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">Bloquear Usuário na Catraca</td><td>A regra é manter “sim”. Quando for utilizado “não”, registrar a justificativa correspondente.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="ok"><td class="code">Ignorar Lançamentos Futuros</td><td>Utilizado somente em simulações. Na rescisão normal, não é aplicado.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">Desviar fluxo de e-mail</td><td>Registra um indicador S ou N para alterar o fluxo das mensagens. Ainda é necessário definir em quais situações o recurso deve ser utilizado.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="open"><td class="code">Dias a mais de 13º e Férias</td><td>Dias adicionais quando o funcionário paga o aviso. Confirmar a finalidade e as situações de uso.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
+<tr data-status="open"><td class="code">Aviso Prévio pago ou indenizado</td><td>Indica o aviso prévio pago e segue ao eSocial quando indenizado. Confirmar os dados apresentados pelo sistema.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
+<tr data-status="open"><td class="code">Último Dia</td><td>Último dia trabalhado ou data projetada do aviso. Confirmar se o preenchimento é automático ou manual.</td><td class="st"><span class="pill open">Em aberto</span></td></tr>
+<tr data-status="val"><td class="code">Pensão Alimentícia, percentual e valor</td><td>Preencher somente quando houver pensão alimentícia. Confirmar a origem do cálculo e os dados encaminhados ao eSocial.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="ok"><td class="code">Certidão de Óbito</td><td>Nos casos de falecimento, informar o número da certidão de óbito.</td><td class="st"><span class="pill ok">Confirmado</span></td></tr>
+<tr data-status="val"><td class="code">Cumprimento de Aviso</td><td>Lista que identifica o tipo de cumprimento, o motivo e a existência de aviso prévio.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Consignado, Instituição e Contrato</td><td>O sistema identifica o empréstimo consignado ativo e apresenta uma mensagem de aviso. Instituição e contrato costumam permanecer em branco.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Descontado e Reavido</td><td>Indicadores utilizados no tratamento do eConsignado durante a rescisão. Confirmar como o RH define cada opção.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+<tr data-status="val"><td class="code">Evento e Valor</td><td>A RH632 apresenta eventos internos, como os códigos utilizados para décimo terceiro e férias indenizadas. A origem da tabela de eventos e a referência à RH922 ainda precisam ser confirmadas.</td><td class="st"><span class="pill val">A validar</span></td></tr>
+</tbody>
+</table></div></div>
+<div class="note alert"><span class="lbl">eConsignado</span> Em 23/07/2026, a mensagem de aviso foi apresentada pelo sistema, porém a data exibida não correspondia a 23/07/2026. O comportamento e a data de referência precisam ser verificados com Vilmar.</div>
+<p>As funções disponíveis na tela incluem Consultar, Detalhar, Cancelar, Bloquear Catraca, Movimento Futuro e Consultar Eventos. A opção Detalhar gera os termos, enquanto o cancelamento deve ocorrer antes dos depósitos. A impressão fica disponível no canto direito. Os dados de FGTS e empréstimo são informados na própria RH632.</p>
+</section>
+<!-- 7 -->
+<!-- 8 -->
+<section class="section" id="s7">
+<div class="s-head"><span class="num">07</span><h2>Impressão e vias</h2></div>
+<p class="lead">Quantidade de vias, local de homologação e procedimento aplicável a cada cenário.</p>
+<p>Após concluir o cálculo, utilizar a opção <strong>Detalhar Rescisão</strong> para revisar as informações e emitir os documentos.</p>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Cenário</th><th>Vias e procedimento</th></tr></thead>
+<tbody>
+<tr><td class="code">Acima de 3 meses (sindicato)</td><td>Quatro vias sem timbre. Uma é assinada no momento da homologação e três são carimbadas pelo Sindicato, com destinação ao colaborador, ao Sindicato e à empresa. Esse cenário corresponde ao código “S” na mensagem encaminhada às áreas.</td></tr>
+<tr><td class="code">Abaixo de 3 meses (empresa)</td><td>Homologação na Círculo (código “C”). No aviso descontado antes da experiência: 4 vias (1 assinada, 1 da empresa), com carimbo e informativo do valor descontado.</td></tr>
+<tr><td class="code">Demissão com ou sem justa causa</td><td>2 vias (empresa e colaborador), com duas assinaturas de preposto.</td></tr>
+<tr><td class="code">Término de contrato (experiência)</td><td>2 vias (empresa e colaborador); sem sindicato e sem exame demissional.</td></tr>
+</tbody>
+</table></div></div>
+<p>A opção <strong>Detalhar Rescisão</strong> apresenta as abas Termo de Rescisão, Termo de Quitação para contratos de até três meses, Termo de Homologação para contratos superiores a três meses, Resumo e Atualização da CTPS. A organização está alinhada aos códigos “C”, utilizado para homologação na empresa, e “S”, utilizado para homologação no Sindicato.</p>
+<p>Atualmente, o eConsignado gera um formulário impresso em duas vias. O procedimento permanece sujeito à validação com Vilmar.</p>
+</section>
+<!-- 9 -->
+<section class="section" id="s8">
+<div class="s-head"><span class="num">08</span><h2>Prazos e cronograma</h2></div>
+<p class="lead">Cronograma semanal das comunicações, cálculos, envio ao eSocial, pagamentos e homologações.</p>
+<p>O cronograma do RH está dividido em dois fluxos, definidos pelo dia em que o pedido ou o aviso é registrado.</p>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Etapa</th><th>Pedido ou aviso: segunda e terça</th><th>Pedido ou aviso: quarta, quinta e sexta</th></tr></thead>
+<tbody>
+<tr><td class="code">Mensagem informativa</td><td>Terça, até 16:45</td><td>Sexta, até 16:45</td></tr>
+<tr><td class="code">Cálculo</td><td>Quinta e sexta</td><td>Segunda e terça</td></tr>
+<tr><td class="code">eSocial</td><td>Sexta</td><td>Terça</td></tr>
+<tr><td class="code">Financeiro</td><td>Sexta</td><td>Terça</td></tr>
+<tr><td class="code">Débito em conta</td><td>Terça</td><td>Quinta</td></tr>
+<tr><td class="code">Pagamento</td><td>Quarta</td><td>Sexta</td></tr>
+<tr><td class="code">Homologação</td><td>Quarta da 1ª semana seguinte</td><td>Quarta da 2ª semana seguinte</td></tr>
+</tbody>
+</table></div></div>
+<div class="note alert"><span class="lbl">Divergência</span> O manual de 2022 informa que a homologação ocorre na <em>terça feira</em>, enquanto o cronograma atual indica a <em>quarta feira</em>. A prática vigente precisa ser confirmada.</div>
+<h3>Comunicação de pendências</h3>
+<ul class="clean">
+<li><strong>Cadência:</strong> as rescisões registradas entre domingo e quarta feira são comunicadas na quarta feira à tarde. As registradas entre quinta feira e sábado são comunicadas na segunda feira pela manhã.</li>
+<li><strong>Códigos:</strong> “**” antes do cartão ponto marca os pedidos de demissão; ao lado da data, “C” = empresa (até 3 meses) e “S” = sindicato (acima de 3 meses).</li>
+<li><strong>Resposta das áreas:</strong> o retorno deve ocorrer até aproximadamente 17h do dia informado.</li>
+<li><strong>Provisões com o financeiro:</strong> segundas e quintas (rescisão e FGTS).</li>
+</ul>
+<div class="note info"><span class="lbl">Materiais complementares</span> Os registros preenchidos dos últimos dias e os modelos das mensagens de aviso utilizadas no WhatsApp serão encaminhados para inclusão na documentação.</div><p><strong>Prazos legais mencionados:</strong> o envio ao eSocial e o crédito em conta devem ocorrer em até dez dias. O Financeiro deve receber as informações com dois dias de antecedência em relação ao pagamento. Esses prazos ainda precisam ser comparados com o cronograma operacional.</p>
+</section>
+<!-- 10 -->
+<section class="section" id="s9">
+<div class="s-head"><span class="num">09</span><h2>Fluxo financeiro e fluxo das áreas de apoio</h2></div>
+<p class="lead">Os fluxos foram separados para facilitar a leitura e deixar claro o papel de cada participante após a preparação da rescisão.</p>
+<div class="flow-grid">
+<article class="flow-box">
+<div class="flow-kicker">Fluxo 01</div>
+<h3>Financeiro</h3>
+<ol class="flow-list">
+<li><span>1</span><div><strong>Concluir o cálculo e os termos.</strong><p>A RH632 deve estar detalhada, conferida e pronta para o processamento financeiro.</p></div></li>
+<li><span>2</span><div><strong>Gerar o arquivo bancário.</strong><p>A RHR803 gera o arquivo de crédito em conta.</p></div></li>
+<li><span>3</span><div><strong>Obter o arquivo na GS526.</strong><p>A GS526 é utilizada especificamente para localizar e baixar o arquivo bancário.</p></div></li>
+<li><span>4</span><div><strong>Processar a remessa.</strong><p>A RH760 participa do pagamento da rescisão. A relação exata entre RH760 e RHR803 ainda precisa ser confirmada.</p></div></li>
+<li><span>5</span><div><strong>Tratar o retorno bancário.</strong><p>A RH803 foi indicada como rotina de retorno. É necessário confirmar se o arquivo segue o padrão CNAB 400.</p></div></li>
+<li><span>6</span><div><strong>Gerar a Autorização de Pagamento.</strong><p>A FNR060 gera a AP e o título do fornecedor, utilizando o código 991376.</p></div></li>
+<li><span>7</span><div><strong>Gerar o FGTS Digital.</strong><p>O procedimento detalhado ainda precisa ser documentado.</p></div></li>
+<li><span>8</span><div><strong>Enviar ao Bradesco e ao Financeiro.</strong><p>O material segue para processamento bancário e aprovação do Financeiro.</p></div></li>
+<li><span>9</span><div><strong>Finalizar a documentação.</strong><p>Imprimir a via necessária, carimbar, assinar e encaminhar a AP para assinatura da Coordenação.</p></div></li>
+</ol>
+</article>
+<article class="flow-box">
+<div class="flow-kicker">Fluxo 02</div>
+<h3>Áreas de apoio</h3>
+<ol class="flow-list">
+<li><span>1</span><div><strong>Benefícios.</strong><p>Karen realiza as conferências necessárias antes da liberação do cálculo.</p></div></li>
+<li><span>2</span><div><strong>Ponto.</strong><p>Márcia trata e confirma as informações de ponto antes do prosseguimento.</p></div></li>
+<li><span>3</span><div><strong>Ambulatório.</strong><p>Participa somente quando houver necessidade de exame demissional. A homologação depende do ASO apto quando o exame for exigido.</p></div></li>
+<li><span>4</span><div><strong>Segurança e PPP.</strong><p>Nos desligamentos com ou sem justa causa, o cartão ponto é encaminhado à Segurança para emissão do PPP.</p></div></li>
+<li><span>5</span><div><strong>Sindicato.</strong><p>As homologações de contratos superiores a três meses são realizadas no Sindicato Têxtil de Gaspar.</p></div></li>
+<li><span>6</span><div><strong>Planos de saúde.</strong><p>A participação da Uniodonto e o procedimento de exclusão da Unimed ainda precisam ser reconciliados com o fluxo de Benefícios.</p></div></li>
+</ol>
+</article>
+</div>
+<h3>Integrações e pontos complementares</h3>
+<ul class="clean">
+<li><strong>eConsignado:</strong> atualmente gera um formulário em duas vias. A mensagem de aviso e a data apresentada pelo sistema precisam ser validadas com Vilmar.</li>
+<li><strong>WhatsApp:</strong> os modelos das mensagens utilizadas nos avisos de término de contrato e justa causa serão incorporados após o recebimento do material.</li>
+<li><strong>PagFor:</strong> foi mencionado como procedimento exclusivo da Plasvale ou de empresas relacionadas. Essa informação permanece pendente de validação.</li>
+</ul>
+<div class="note info"><span class="lbl">Capturas de tela</span> O material do RH contém oito imagens do fluxo financeiro. Elas devem ser distribuídas dentro da caixa do fluxo financeiro, junto às etapas correspondentes, evitando uma sequência isolada de imagens.</div>
+</section>
+<!-- 11 -->
+<section class="section" id="s10">
+<div class="s-head"><span class="num">10</span><h2>Pendências para continuidade</h2></div>
+<p class="lead">Pontos que permanecem sujeitos a confirmação após a reunião realizada em 24/07/2026.</p>
+<div class="note ok"><span class="lbl">Definições incorporadas</span> A origem foi organizada em Empregado, Empresa e Força maior. A MP ficou restrita ao desligamento sem justa causa. A RH1006 passou a anteceder a RH632. O cálculo e a emissão dos termos foram reunidos na mesma etapa, o envio ao eSocial ganhou uma etapa própria e os fluxos financeiro e das áreas de apoio foram separados.</div>
+<h3>Telas e nomenclatura</h3>
+<div class="chk-group">
+<label class="chk"><input type="checkbox"/><span>Validar com Vilmar o preenchimento e a operação da RH632.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar a relação operacional entre RH760 e RHR803 no processamento do pagamento.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar se a RH803 corresponde ao retorno bancário e se utiliza o padrão CNAB 400.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar o nome oficial da RH621 e onde ficam gravadas a norma de medidas disciplinares e a política interna.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar se a referência à RH922 corresponde a uma tela válida ou a outra nomenclatura.</span></label>
+</div>
+<h3>Campos da RH632 a definir</h3>
+<div class="chk-group">
+<label class="chk"><input type="checkbox"/><span>Definir em quais situações deve ser utilizado o campo “Desviar fluxo de e-mail”.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir a finalidade do campo “Dias a mais de 13º e Férias” e as situações em que deve ser preenchido.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar quais informações são apresentadas pelo sistema no campo “Aviso Prévio pago ou indenizado”.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar se o campo “Último Dia” é preenchido automaticamente pelo sistema ou manualmente.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir a regra de negócio do eConsignado para as opções “Descontado” e “Reavido”.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir em quais situações devem ser preenchidos os campos “Três Últimos Salários” e “Recebeu Salário nos últimos seis meses”.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar a origem do cálculo da pensão alimentícia e os dados enviados ao eSocial.</span></label>
+</div>
+<h3>Processo, prazos e materiais</h3>
+<div class="chk-group">
+<label class="chk"><input type="checkbox"/><span>Confirmar se a homologação ocorre na terça feira, conforme o manual de 2022, ou na quarta feira, conforme o cronograma atual.</span></label>
+<label class="chk"><input type="checkbox"/><span>Comparar o prazo legal de dez dias e o envio ao Financeiro com dois dias de antecedência com o cronograma operacional.</span></label>
+<label class="chk"><input type="checkbox"/><span>Validar a vigência das informações dos manuais entre 2017 e 2022, incluindo locais, horários, períodos de contrato e destinatários.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar a participação da Uniodonto e mapear o procedimento de exclusão da Unimed.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir a reorganização dos destinatários por setor e função, evitando a manutenção por nomes individuais.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar se os tipos principais da RH1006 correspondem às formas descritas no manual.</span></label>
+<label class="chk"><input type="checkbox"/><span>Receber os registros preenchidos dos últimos dias e os modelos das mensagens de aviso do WhatsApp.</span></label>
+<label class="chk"><input type="checkbox"/><span>Verificar com Vilmar a mensagem do eConsignado apresentada em 23/07/2026 e a divergência da data exibida.</span></label>
+<label class="chk"><input type="checkbox"/><span>Criar os links específicos para a norma de medidas disciplinares e a política interna após confirmar os locais de armazenamento.</span></label>
+</div>
+<h3>Ainda falta levantar</h3>
+<div class="chk-group">
+<label class="chk"><input type="checkbox"/><span>Detalhar as análises anteriores à rescisão para cada origem, incluindo responsáveis e evidências necessárias.</span></label>
+<label class="chk"><input type="checkbox"/><span>Mapear as telas RH557 e RH1001, que ainda não possuem anexo neste levantamento.</span></label>
+<label class="chk"><input type="checkbox"/><span>Revisar a ordem final do fluxo após a validação da RH632 com Vilmar.</span></label>
+<label class="chk"><input type="checkbox"/><span>Distribuir as oito capturas de tela dentro das etapas correspondentes do fluxo financeiro.</span></label>
+</div>
+</section>
+<footer>
+<div class="foot-brand"><span aria-label="Help SINGE" class="logo-singe" role="img" style="width:31px;height:34px"></span><span class="sep"></span><span aria-label="Lince Tech" class="logo-lince" role="img" style="width:48px;height:26px"></span></div>
+<span class="foot-stmt">Um produto <strong>Lince Tech</strong>, desenvolvido para o <strong>Help SINGE</strong>.</span><br/>
+Conteúdo organizado a partir das reuniões de 21/07/2026 e 24/07/2026, das telas analisadas e dos manuais do RH. Este é um material de trabalho e não substitui a documentação final.
+</footer>
+</div>
+</div>
+</div>
 <script>
 (function(){
   // reading progress
@@ -645,7 +607,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
   });
 
   // checklist — marks persist in this browser (localStorage), with graceful fallback
-  var STORAGE_KEY='rescisao_levantamento_checklist_v1';
+  var STORAGE_KEY='rescisao_levantamento_checklist_v2';
   var boxes=[].slice.call(document.querySelectorAll('.chk input[type=checkbox]'));
   var done=document.getElementById('chkDone'),total=document.getElementById('chkTotal'),bar=document.getElementById('chkBar');
   var savedNote=document.getElementById('savedNote');
