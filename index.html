@@ -309,6 +309,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <section class="section" id="s4">
 <div class="s-head"><span class="num">04</span><h2>Atividades envolvidas</h2></div>
 <p class="lead">Relação das atividades que permanecem no levantamento, considerando as definições da reunião de 24/07/2026 e os apontamentos do RH.</p>
+<div class="note ok"><span class="lbl">Como distinguir tela de relatório</span> No SINGE, a atividade cujo prefixo de letras termina em <strong>R</strong> é um relatório: <code>RHR803</code> é relatório do módulo RH e <code>FNR060</code> é relatório do módulo financeiro. Sem esse R, a atividade é uma tela. A regra confere com o código: das dezesseis atividades analisadas, apenas essas duas não declaram título de tela.</div>
 <div class="note ok"><span class="lbl">Origem dos nomes</span> Os nomes oficiais e a coluna Tipo foram extraídos do código-fonte das próprias atividades, analisado em 04/09/2026. Onde o nome oficial diverge do que vinha sendo usado no levantamento, a diferença está registrada em Observações.</div>
 <div class="table-wrap"><div class="scroll"><table>
 <thead><tr><th>Atividade</th><th>Tipo</th><th>Nome oficial</th><th>Papel no processo</th><th style="text-align:center">Situação</th><th>Observações</th></tr></thead>
@@ -328,7 +329,22 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <tr data-status="ok"><td class="code">GS526</td><td>Tela</td><td>Impressão de relatórios</td><td>Tela genérica de impressão e obtenção de relatórios do SINGE. É onde o arquivo bancário gerado é localizado e baixado.</td><td class="st"><span class="pill ok">Confirmado</span></td><td>O levantamento usava “Obtenção do arquivo bancário”, que descreve o uso e não a tela.</td></tr>
 </tbody>
 </table></div></div>
-<p>As telas <strong>RH557</strong>, referente aos acúmulos da folha, e <strong>RH1001</strong>, destinada à consulta de funcionários, permanecem citadas na documentação existente, mas ainda não possuem anexo neste levantamento.</p>
+<p>As atividades <strong>RH557</strong>, Acúmulos da folha de pagamento, e <strong>RH1001</strong>, Consulta de funcionários, permanecem citadas na documentação existente, mas ainda não fazem parte da relação acima.</p>
+<h3>Relatórios acionados pelas atividades</h3>
+<p>Aplicada a regra do R, os fontes mostram que o processo aciona bem mais relatórios do que os dois relacionados acima. A lista saiu das referências encontradas dentro de cada atividade e ainda não foi levantada.</p>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Atividade</th><th>Relatórios que ela aciona</th></tr></thead>
+<tbody>
+<tr><td class="code">RH632</td><td>RHR020, RHR039, RHR086, RHR097, RHR186, RHR188, RHR797, RHR920 e RHR997</td></tr>
+<tr><td class="code">RH760</td><td>RHR803 e RHR914</td></tr>
+<tr><td class="code">RHR803</td><td>RHR014, RHR027, RHR894 e RHR914</td></tr>
+<tr><td class="code">RH9000</td><td>RHR027 e RHR188</td></tr>
+<tr><td class="code">RH1006</td><td>FNR008</td></tr>
+<tr><td class="code">RH1004</td><td>RHR894</td></tr>
+<tr><td class="code">RH1028</td><td>RHR201 e RHR901</td></tr>
+</tbody>
+</table></div></div>
+<p class="cap">A RH632 já traz na tela o botão “Gera RHR097”, o que indica que pelo menos parte desses relatórios é acionada diretamente pelo usuário durante a rescisão.</p>
 
 </section>
 <!-- 5 -->
@@ -596,6 +612,8 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <div class="chk-group">
 <label class="chk"><input type="checkbox"/><span>Detalhar as análises anteriores à rescisão para cada origem, incluindo responsáveis e evidências necessárias.</span></label>
 <label class="chk"><input type="checkbox"/><span>Decidir se a RH557, Acúmulos da folha de pagamento, e a RH1001, Consulta de funcionários, entram na relação de atividades. Os nomes oficiais já estão confirmados pelo código.</span></label>
+<label class="chk"><input type="checkbox"/><span>Levantar os relatórios acionados pelas atividades do processo, relacionados ao final da seção 4, e decidir quais entram na documentação. Só RHR803 e FNR060 estão descritos hoje.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar em que momento da rescisão o usuário aciona o “Gera RHR097” disponível na RH632.</span></label>
 <label class="chk"><input type="checkbox"/><span>Revisar a ordem final do fluxo após a validação da RH632 com o responsável funcional pela rotina.</span></label>
 <label class="chk"><input type="checkbox"/><span>Distribuir as oito capturas de tela dentro das etapas correspondentes do fluxo financeiro.</span></label>
 </div>
