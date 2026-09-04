@@ -285,6 +285,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <li><strong>Término do contrato de experiência:</strong> ocorre ao final dos 45 ou 90 dias e pode partir do empregado ou da liderança, com a reprovação registrada na RH977. Há casos em que o empregado deixa de comparecer ao trabalho e não manifesta interesse pelo encerramento do contrato. Nessas situações, o RH encaminha mensagem por WhatsApp comunicando o encerramento.</li>
 <li><strong>Término antecipado do contrato:</strong> a empresa ou o empregado podem manifestar interesse pela rescisão no curso do contrato de experiência. Quem manifesta o interesse tem a obrigação de pagar à outra parte metade dos dias faltantes. Embora haja pagamento de indenização, não é solicitada aprovação do CEO por meio de MP.</li>
 <li><strong>Rescisão por falecimento:</strong> é iniciada mediante a apresentação do documento de óbito.</li>
+<li><strong>Rescisão por mútuo acordo:</strong> depende da manifestação do empregado e da aprovação da diretoria. É utilizada apenas em procedimentos previstos em políticas internas.</li>
 </ul>
 <div class="note ok"><span class="lbl">Regra confirmada</span> A MP, com autorização prévia do CEO, é exigida apenas na demissão sem justa causa. A demissão com justa causa depende da aprovação da Diretoria de Gente e Gestão, e o término antecipado do contrato não utiliza MP, ainda que gere pagamento de indenização.</div>
 </section>
@@ -319,6 +320,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <tr data-status="ok"><td class="code">RH636</td><td>Quadro, postos de trabalho e vagas</td><td>Apresenta alocados, afastados, aumento de quadro, vagas pendentes, postos disponíveis e colaboradores em demissão. Recebe informações da RH1006.</td><td class="st"><span class="pill ok">Confirmado</span></td><td>Apenas recebe informações, não tem relação com a execução do processo de rescisão.</td></tr>
 <tr data-status="ok"><td class="code">RH1004</td><td>Consulta do espelho de ponto</td><td>Apresenta o espelho de ponto e o banco de horas do colaborador para a conferência anterior ao cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td><td class="muted">—</td></tr>
 <tr data-status="ok"><td class="code">RH1028</td><td>Ocorrência de registro de ponto</td><td>Utilizada na conferência das marcações de ponto antes da liberação do processo para cálculo.</td><td class="st"><span class="pill ok">Confirmado</span></td><td>Redundância da RH1004. Deveria ser citada apenas uma delas.</td></tr>
+<tr data-status="val"><td class="code">RH9000</td><td>Envio ao eSocial</td><td>Encaminha ao eSocial as informações da rescisão, na plataforma Compliance, após a conclusão e a conferência do cálculo.</td><td class="st"><span class="pill val">A validar</span></td><td>Citada nos apontamentos do RH na etapa de envio ao eSocial. O nome oficial da tela e o detalhamento da operação ainda não foram levantados.</td></tr>
 <tr data-status="val"><td class="code">RH760</td><td>Remessa de pagamento ao banco</td><td>Participa do processamento do pagamento da rescisão e possui a opção de geração da AP.</td><td class="st"><span class="pill val">A validar</span></td><td>Gera o arquivo bancário e a AP para o Financeiro. Processa o arquivo de retorno para validar e contabilizar o pagamento.</td></tr>
 <tr data-status="val"><td class="code">RHR803</td><td>Arquivo de crédito em conta e retorno bancário</td><td>É utilizada no fluxo bancário da rescisão para a geração do arquivo de crédito em conta e para o tratamento do retorno bancário. Ainda deve ser confirmado se o retorno utiliza o padrão CNAB 400.</td><td class="st"><span class="pill val">A validar</span></td><td>Redundância da RH760. Deveria ser citada apenas uma delas.</td></tr>
 <tr data-status="ok"><td class="code">FNR060</td><td>Autorização de Pagamento</td><td>Gera a Autorização de Pagamento e o título do fornecedor no contas a pagar, utilizando o código 991376.</td><td class="st"><span class="pill ok">Confirmado</span></td><td class="muted">—</td></tr>
@@ -345,6 +347,7 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <li>Demissão com justa causa.</li>
 <li>Término normal do contrato, a partir da avaliação da RH977.</li>
 </ul>
+<div class="note info"><span class="lbl">A reconciliar</span> A tela oferece cinco tipos de operação no campo <code>inopcsel</code>, enquanto o item 5.4 relaciona sete modalidades de desligamento. A correspondência entre as duas listas, inclusive para mútuo acordo e falecimento, ainda precisa ser confirmada.</div>
 <h3>5.2 · Campos da RH1006</h3>
 <div class="table-wrap"><div class="scroll"><table>
 <thead><tr><th>Campo</th><th>O que informar</th></tr></thead>
@@ -372,14 +375,29 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <tbody>
 <tr><td>Pedido de demissão</td><td>Manifestação do empregado e definição do aviso, liberado, descontado ou trabalhado.</td><td>Carta de pedido de demissão</td><td>O empregado deve estar com contrato ativo.</td></tr>
 <tr><td>Demissão sem justa causa</td><td>MP aprovada pelo CEO e validação da situação atual.</td><td>Carta de aviso prévio</td><td>Verificar atestados, afastamentos, estabilidade e saúde antes da emissão.</td></tr>
-<tr><td>Demissão com justa causa</td><td>Dossiê e autorização da Diretoria de Gente e Cultura.</td><td>Comunicado de dispensa com justa causa</td><td>Informar a alínea do artigo 482 e a justificativa.</td></tr>
+<tr><td>Demissão com justa causa</td><td>Dossiê e autorização da Diretoria de Gente e Gestão.</td><td>Comunicado de dispensa com justa causa</td><td>Informar a alínea do artigo 482 e a justificativa.</td></tr>
 <tr><td>Término do contrato de experiência</td><td>Chegada ao 45º ou ao 90º dia.</td><td>Documento de término</td><td>Registrar quem tomou a iniciativa.</td></tr>
 <tr><td>Término antecipado</td><td>Solicitação antes do 45º ou do 90º dia.</td><td>Documento de término antecipado</td><td>Identificar a iniciativa, empresa ou empregado, e a indenização aplicável, correspondente a metade dos dias faltantes e paga por quem tomou a iniciativa.</td></tr>
 <tr><td>Falecimento</td><td>Certidão de óbito.</td><td>Não há emissão</td><td>Única modalidade sem documento pela RH1006.</td></tr>
 <tr><td>Mútuo acordo</td><td>Manifestação do empregado e aprovação da diretoria.</td><td>Documento de mútuo acordo</td><td>Utilizado apenas em procedimentos previstos em políticas internas.</td></tr>
 </tbody>
 </table></div></div>
-<h3>5.5 · Entrega, mensagens e referências</h3>
+<h3>5.5 · Exame demissional e homologação por modalidade</h3>
+<p>Complementa o resumo anterior com as duas definições que condicionam o encerramento do processo. A quantidade de vias e o procedimento de assinatura de cada cenário estão na seção 7.</p>
+<div class="table-wrap"><div class="scroll"><table>
+<thead><tr><th>Modalidade</th><th>Exame demissional</th><th>Homologação</th></tr></thead>
+<tbody>
+<tr><td>Pedido de demissão</td><td>Sim. No aviso cumprido, é realizado somente após o encerramento do aviso.</td><td>Sindicato Têxtil de Gaspar para contratos acima de três meses e Círculo para contratos de até três meses.</td></tr>
+<tr><td>Demissão sem justa causa</td><td>Sim, quando necessário.</td><td>Conforme o tempo de contrato.</td></tr>
+<tr><td>Demissão com justa causa</td><td>Sim, quando necessário.</td><td>Conforme o cenário.</td></tr>
+<tr><td>Término do contrato de experiência</td><td>Não.</td><td>Círculo.</td></tr>
+<tr><td>Término antecipado</td><td>Não.</td><td>Círculo.</td></tr>
+<tr><td>Falecimento</td><td>Não se aplica.</td><td>Não se aplica.</td></tr>
+<tr><td>Mútuo acordo</td><td>A confirmar.</td><td>A confirmar.</td></tr>
+</tbody>
+</table></div></div>
+<div class="note info"><span class="lbl">Complemento</span> Nas demissões com e sem justa causa, o cartão ponto é encaminhado à Segurança para emissão do PPP, conforme a seção 9.</div>
+<h3>5.6 · Entrega, mensagens e referências</h3>
 <ul class="clean">
 <li>O WhatsApp é utilizado nos casos de término de contrato e justa causa. Os modelos das mensagens de aviso serão encaminhados para inclusão na documentação.</li>
 <li>O envio pelo Correio ocorre quando o colaborador não comparece.</li>
@@ -515,15 +533,19 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <!-- 11 -->
 <section class="section" id="s10">
 <div class="s-head"><span class="num">10</span><h2>Pendências para continuidade</h2></div>
-<p class="lead">Pontos que permanecem sujeitos a confirmação após a reunião realizada em 24/07/2026.</p>
+<p class="lead">Pontos que permanecem sujeitos a confirmação após a reunião de 24/07/2026 e os apontamentos do RH.</p>
 <div class="note ok"><span class="lbl">Definições incorporadas</span> A origem foi organizada em Empregado, Empresa e Força maior. A MP ficou restrita ao desligamento sem justa causa. A RH1006 passou a anteceder a RH632. O cálculo e a emissão dos termos foram reunidos na mesma etapa, o envio ao eSocial ganhou uma etapa própria e os fluxos financeiro e das áreas de apoio foram separados.</div>
+<div class="note ok"><span class="lbl">Revisão do RH</span> A MP passou a exigir autorização prévia do CEO e análise trabalhista e econômica. A justa causa passou a depender dos rituais da política de medidas disciplinares e da aprovação da diretoria. O término de experiência ganhou os prazos de 45 e 90 dias e o comunicado por WhatsApp, e o término antecipado passou a prever indenização de metade dos dias faltantes, sem MP. A sequência de etapas incorporou a emissão de guias e a provisão financeira. O item 5.4 passou a resumir as modalidades e o mútuo acordo entrou como modalidade prevista em política interna.</div>
 <h3>Telas e nomenclatura</h3>
 <div class="chk-group">
 <label class="chk"><input type="checkbox"/><span>Validar com o responsável funcional o preenchimento e a operação da RH632.</span></label>
-<label class="chk"><input type="checkbox"/><span>Confirmar a relação operacional entre RH760 e RHR803 no processamento do pagamento.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir qual tela permanece citada na documentação, RH760 ou RHR803, já que os apontamentos indicam redundância entre elas.</span></label>
+<label class="chk"><input type="checkbox"/><span>Definir qual tela permanece citada na documentação, RH1004 ou RH1028, já que os apontamentos indicam redundância entre elas.</span></label>
+<label class="chk"><input type="checkbox"/><span>Levantar o nome oficial e a operação da RH9000, citada na etapa de envio ao eSocial pela plataforma Compliance.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar se o retorno bancário tratado na RHR803 utiliza o padrão CNAB 400.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar o nome oficial da RH621 e onde ficam gravadas a norma de medidas disciplinares e a política interna.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar se a referência à RH922 corresponde a uma tela válida ou a outra nomenclatura.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar o nome oficial da diretoria que aprova a justa causa, já que os apontamentos trazem Gente e Gestão e Gente e Cultura. O documento está padronizado em Diretoria de Gente e Gestão.</span></label>
 </div>
 <h3>Campos da RH632 a definir</h3>
 <div class="chk-group">
@@ -543,6 +565,8 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--hair);font-si
 <label class="chk"><input type="checkbox"/><span>Confirmar a participação da Uniodonto e mapear o procedimento de exclusão da Unimed.</span></label>
 <label class="chk"><input type="checkbox"/><span>Definir a reorganização dos destinatários por setor e função, evitando a manutenção por nomes individuais.</span></label>
 <label class="chk"><input type="checkbox"/><span>Confirmar se os tipos principais da RH1006 correspondem às formas descritas no manual.</span></label>
+<label class="chk"><input type="checkbox"/><span>Confirmar a correspondência entre os cinco tipos de operação da RH1006 e as sete modalidades relacionadas no item 5.4, inclusive mútuo acordo e falecimento.</span></label>
+<label class="chk"><input type="checkbox"/><span>Levantar o tratamento da rescisão por mútuo acordo, incluindo exame demissional, homologação, vias e documentos aplicáveis.</span></label>
 <label class="chk"><input type="checkbox"/><span>Receber os registros preenchidos dos últimos dias e os modelos das mensagens de aviso do WhatsApp.</span></label>
 <label class="chk"><input type="checkbox"/><span>Verificar com a área responsável pela rotina a mensagem do eConsignado apresentada em 23/07/2026 e a divergência da data exibida.</span></label>
 <label class="chk"><input type="checkbox"/><span>Criar os links específicos para a norma de medidas disciplinares e a política interna após confirmar os locais de armazenamento.</span></label>
